@@ -1,0 +1,180 @@
++-------------------------------------------------------------------------------
+| NCam ver: bonecrew rev: git06a3316 target: armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa
+| Tools:
+|  CROSS    = /opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-
+|  CC       = /opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+|  STRIP    = /opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-strip
+|  SSL      = /usr/bin/openssl
+| Settings:
+|  CONF_DIR = /etc/tuxbox/config/ncam
+|  CC_OPTS  = -O2 -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns
+|  CC_WARN  = -W -Wall -Wshadow -Wredundant-decls -Wstrict-prototypes -Wold-style-definition
+|  CFLAGS   = -DWITH_SU980=1 -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC -I/opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LDFLAGS  = -Wl,--gc-sections -DWITH_SU980=1 -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC -I/opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LIBS     = -lentropic -lrt -lssl -lcrypto -lcurl -lusb-1.0 -lrt -lpcsclite -ldvbcsa -lm -lpthread -ldl -lrt
+|  UseFlags = USE_SU980=1 USE_SSL=1 USE_LIBCRYPTO=1 USE_LIBCURL=1 USE_LIBUSB=1 USE_PCSC=1 USE_UTF8=1 USE_LIBDVBCSA=1
+| Config:
+|  Addons   : WEBIF WEBIF_LIVELOG WEBIF_JQUERY WITH_COMPRESS_WEBIF TOUCH WITH_SSL HAVE_DVBAPI WITH_NEUTRINO READ_SDT_CHARSETS IRDETO_GUESSING CS_ANTICASC WITH_DEBUG MODULE_MONITOR WITH_LB CS_CACHEEX CS_CACHEEX_AIO CW_CYCLE_CHECK LCDSUPPORT LEDSUPPORT CLOCKFIX WITH_SIGNING WITH_CARDLIST WITH_EMU WITH_SOFTCAM
+|  Protocols: CAMD33 CAMD35 CAMD35_TCP NEWCAMD CCCAM CCCSHARE GBOX RADEGAST SCAM SERIAL CONSTCW PANDORA GHTTP STREAMRELAY
+|  Readers  : NAGRA NAGRA_MERLIN IRDETO CONAX CRYPTOWORKS SECA VIACCESS VIDEOGUARD DRE TONGFANG STREAMGUARD JET BULCRYPT GRIFFIN DGCRYPT
+|  CardRdrs : PHOENIX INTERNAL SC8IN1 MP35 SMARGO STAPI STINGER DRECAS SMART PCSC
+|  Compiler : armv7a-vuplus4k-linux-gnueabihf-gcc (crosstool-NG 1.26.0.30_cd0d146 - simplebuild3) 13.2.0
+|  Signing  : OpenSSL 3.0.2 15 Mar 2022
+|             Public Key Algorithm: id-ecPublicKey, Public-Key: (256 bit), Signature Algorithm: ecdsa-with-SHA256,
+|             Valid Not After: 24.11.2025 14:07:29, Subject: CN = Private NCam CA Certificate
+|  Config   : build/armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa/config.mak
+|  Binary   : Distribution/ncam-bonecrew-git06a3316-armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa
++-------------------------------------------------------------------------------
+HOSTCC	webif/pages_gen
+GEN	webif/pages.c
+GEN	Compressed 721904 template bytes into 397938 bytes. 323966 saved bytes (44.88%).
+CC	cscrypt/i_cbc.c
+CC	cscrypt/i_ecb.c
+CC	cscrypt/i_skey.c
+CC	cscrypt/rc6.c
+CC	cscrypt/fast_aes.c
+CC	cscrypt/sha256.c
+CC	cscrypt/jet_twofish.c
+CC	cscrypt/jet_dh.c
+CC	cscrypt/des.c
+CC	cscrypt/mdc2.c
+CC	cardlist.c
+CC	csctapi/atr.c
+CC	cscrypt/md5.c
+CC	csctapi/io_serial.c
+CC	csctapi/icc_async.c
+CC	csctapi/protocol_t0.c
+CC	csctapi/protocol_t1.c
+CC	csctapi/ifd_cool.c
+CC	csctapi/ifd_mp35.c
+CC	csctapi/ifd_pcsc.c
+CC	csctapi/ifd_phoenix.c
+CC	csctapi/ifd_sc8in1.c
+CC	csctapi/ifd_drecas.c
+CC	csctapi/ifd_smargo.c
+CC	minilzo/minilzo.c
+CC	csctapi/ifd_smartreader.c
+CC	csctapi/ifd_stinger.c
+CC	module-camd33.c
+CC	module-anticasc.c
+CC	module-camd35-cacheex.c
+CC	module-camd35.c
+CC	module-cccam-cacheex.c
+CC	module-cccam.c
+CC	module-cacheex.c
+CC	module-constcw.c
+CC	module-cccshare.c
+CC	module-emulator.c
+CC	module-emulator-nemu.c
+CC	module-emulator-cryptoworks.c
+CC	module-emulator-biss.c
+CC	module-emulator-director.c
+module-emulator-nemu.c: In function 'down_softcam':
+module-emulator-nemu.c:137:26: warning: declaration of 'i' shadows a previous local [-Wshadow]
+  137 |                 uint32_t i;
+      |                          ^
+module-emulator-nemu.c:122:26: note: shadowed declaration is here
+  122 |         int32_t ret = 0, i, len = cs_strlen(get_tmp_dir()) + cs_strlen(rdr->label) + 2;
+      |                          ^
+CC	module-emulator-irdeto.c
+CC	module-emulator-nagravision.c
+CC	module-emulator-omnicrypt.c
+CC	module-emulator-powervu.c
+CC	module-emulator-viaccess.c
+CC	module-csp.c
+CC	module-dvbapi-coolapi.c
+CC	module-cw-cycle-check.c
+CC	module-dvbapi-chancache.c
+CC	module-gbox-helper.c
+CC	module-gbox-sms.c
+CC	module-dvbapi.c
+CC	module-gbox-remm.c
+CC	module-gbox-cards.c
+CC	module-gbox.c
+CC	module-ird-guess.c
+CC	module-lcd.c
+CC	module-newcamd.c
+CC	module-led.c
+CC	module-monitor.c
+CC	module-newcamd-des.c
+CC	module-pandora.c
+CC	module-radegast.c
+CC	module-ghttp.c
+CC	module-stat.c
+CC	module-serial.c
+CC	module-scam.c
+CC	module-streamrelay.c
+CC	module-webif-lib.c
+CC	module-webif-tpl.c
+CC	module-webif.c
+CC	webif/pages.c
+CC	reader-common.c
+CC	reader-bulcrypt.c
+CC	reader-dgcrypt.c
+CC	reader-conax.c
+CC	reader-cryptoworks.c
+CC	reader-dre-common.c
+CC	reader-dre.c
+CC	reader-dre-cas.c
+CC	reader-dre-st20.c
+CC	reader-griffin.c
+CC	reader-irdeto.c
+CC	reader-nagra-common.c
+CC	reader-nagra.c
+CC	reader-nagracak7.c
+CC	reader-seca.c
+CC	reader-tongfang.c
+CC	reader-jet.c
+CC	reader-streamguard.c
+CC	reader-viaccess.c
+CC	reader-videoguard-common.c
+CC	reader-videoguard1.c
+CC	reader-videoguard12.c
+CC	ncam-signing.c
+CC	reader-videoguard2.c
+CC	ncam-hashtable.c
+CC	ncam-aes.c
+CC	ncam-array.c
+CC	ncam-chk.c
+CC	ncam-client.c
+CC	ncam-cache.c
+CC	ncam-conf.c
+CC	ncam-conf-chk.c
+CC	ncam-config-account.c
+CC	ncam-conf-mk.c
+CC	ncam-config-global.c
+CC	ncam-config-reader.c
+CC	ncam-config.c
+CC	ncam-ecm.c
+CC	ncam-emm.c
+CC	ncam-emm-cache.c
+CC	ncam-failban.c
+CC	ncam-files.c
+CC	ncam-garbage.c
+CC	ncam-lock.c
+CC	ncam-log-reader.c
+CC	ncam-log.c
+CC	ncam-net.c
+CC	ncam-llist.c
+CC	ncam-reader.c
+CC	ncam-simples.c
+CC	ncam-time.c
+CC	ncam-string.c
+CONF	build/armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa/config.c
+BUILD	Distribution/list_smargo-bonecrew-git06a3316-armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa
+CC	ncam-work.c
+CC	ncam.c
+/opt/s3_ncam_bonecrew/support/toolchains/vuplus4k_armv7a/bin/../lib/gcc/armv7a-vuplus4k-linux-gnueabihf/13.2.0/../../../../armv7a-vuplus4k-linux-gnueabihf/bin/ld: cannot find -lentropic: Datei oder Verzeichnis nicht gefunden
+collect2: error: ld returned 1 exit status
+make[1]: *** [Makefile:583: Distribution/list_smargo-bonecrew-git06a3316-armv7a-vuplus4k-linux-gnueabihf-su980-ssl-libcurl-libusb-pcsc-libdvbcsa] Fehler 1
+make[1]: *** Auf noch nicht beendete Prozesse wird gewartet …
+make: *** [Makefile:539: all] Fehler 2
+
+ |  TIME  >	[  0 min(s) 13 secs ]
+
+oscam-gitbonecrew@06a33161-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-signed.tar.gz
+created
+
+oscam-gitbonecrew@06a33161-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-signed.tar.gz
+nach
+/opt/s3_ncam_bonecrew/archive
