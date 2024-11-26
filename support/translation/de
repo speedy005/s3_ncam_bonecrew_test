@@ -55,7 +55,7 @@ txt_proto="Protokoll"
 # menu txt
 txt_remove_menu="$txt_tc entfernen"
 txt_add_menu="$txt_tc hinzufügen"
-txt_main_revision="\n Die aktuelle ${REPO^^} REVISION ist : r"
+txt_main_revision="\n Die aktuelle ${REPO^^} REVISION ist : "
 txt_bmenu_title="Baumenü"
 
 # help txt
