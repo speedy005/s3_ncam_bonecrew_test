@@ -365,7 +365,7 @@ _build_extra_menu(){
 	USE_vars[USE_STATIC]=
 	USE_vars[USE_EXTRA]=
 	USE_vars[USE_CONFDIR]=
-	USE_vars[USE_NBCAMNAME]=
+	USE_vars[USE_NCAMNAME]=
 	USE_vars[USE_TARGZ]=
 	USE_vars[USE_DIAG]=
 	for bex in $bextra
