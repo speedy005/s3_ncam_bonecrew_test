@@ -2,7 +2,7 @@
 
 SIMPLEVERSION="2024.07"
 VERSIONCOUNTER="$(git rev-list --count HEAD 2>/dev/null || printf "$(echo "$SIMPLEVERSION" | sed -e 's/\(.\)/\1\+0/g' | bc)_non-git")"
-DEVELOPER="Gorgone, WXbet"
+DEVELOPER="Gorgone, Bonrcrew"
 OIFS=$IFS
 export NCURSES_NO_UTF8_ACS=1
 
