@@ -11,9 +11,9 @@ ssh_editor(){
 		port="22"
 		replace_target="y"
 		stop_target="y"
-		targetcam="/usr/bin/oscam_unstable"
+		targetcam="/usr/bin/ncam_unstable"
 		toolchain="dream_one"
-		remote_command="/usr/bin/oscam_unstable -b -r 2 -c /etc/tuxbox/config"
+		remote_command="/usr/bin/ncam_unstable -b -r 2 -c /etc/tuxbox/config"
 	else
 		[ -f "$profdir/$1" ] && source "$profdir/$1"
 	fi

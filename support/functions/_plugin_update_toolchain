@@ -1422,10 +1422,10 @@ _create_toolchaincfg(){
 		sysroot="${sr#$(realpath "$1")/}";
 	fi;
 
-	[ "${16}" == "ANDK" ] && andk_vars='_oscamconfdir_custom="/data/plugin/oscam";
+	[ "${16}" == "ANDK" ] && andk_vars='_ncamconfdir_custom="/data/plugin/ncam";
 _androidndkdir="1";
 stapi_lib_custom="libwi.a";
-stapi_allowed="1";' || andk_vars='_oscamconfdir_custom="";';
+stapi_allowed="1";' || andk_vars='_ncamconfdir_custom="";';
 
 	[ "${16}" == "LGCY" ] && tfn="${17}" || tfn=$(echo "$(decode "$tc_url")\${pversion}/$(basename "$8")" | base64 -w0)
 	[ "${#5}" -gt 0 ] && lsd="$5" || lsd="/usr/lib";
@@ -1444,7 +1444,7 @@ extra_cc="${12}";
 extra_ld="${13}";
 extra_c="${14}";
 _description="$([ "${16}" == "LGCY" ] && echo "$6" || echo "$6" | awk -F'[()]' '{print $1}' | xargs)";
-_oscamconfdir_default="/etc/tuxbox/config";
+_ncamconfdir_default="/etc/tuxbox/config";
 $andk_vars
 _self_build="$([ ! "$9" == "yes" ] && echo "no" || echo "$9")";
 _compiler="$3-";

@@ -13,9 +13,9 @@ svncheckout(){
 	if [ -d "${repodir}" ]
 	then
 		rm -rf "${repodir}"
-		printf "$p_l\n  $txt_delete oscam-${REPO} $re_\n"
+		printf "$p_l\n  $txt_delete ncam-${REPO} $re_\n"
 	else
-		printf "$p_l\n  $txt_no oscam-${REPO} $txt_found\n$re_"
+		printf "$p_l\n  $txt_no ncam-${REPO} $txt_found\n$re_"
 	fi
 
 	printf "$w_l  ${REPO^^} Repository: $g_l$trunkurl$re_"
@@ -46,7 +46,7 @@ svncheckout(){
 	[ -f "${repodir}/config.h" ]&& reset_="$("${repodir}/config.sh" -R)"
 	rm -rf "$fc1"
 	_nl
-	[ -f "$workdir/${REPO^^}-IS-PATCHED" ] && rm -f "$workdir/${REPO^^}-IS-PATCHED"
+	[ -f "$ispatched" ] && rm -f "$ispatched"
 	tar_repo
 }
 
@@ -60,7 +60,7 @@ svnup(){
 
 	if [ -d "${repodir}" ]
 	then
-		printf "$p_l\n  $txt_update oscam-${REPO} $re_\n"
+		printf "$p_l\n  $txt_update ncam-${REPO} $re_\n"
 	else
 		checkout
 		return
@@ -108,7 +108,11 @@ done < <(svn co "$trunkurl" "${repodir}" $_rev| sed "s@${repodir}@@g"| awk '{pri
 	then
 		reset_="$("${repodir}/config.sh" -R)"
 		printf "Revision: $(REVISION) done..."
-		[ -f "$workdir/${REPO^^}-IS-PATCHED" ] && rm -f "$workdir/${REPO^^}-IS-PATCHED"
+		[ -f "$ispatched" ] && rm -f "$ispatched"
 		_get_config_menu
 	fi;))
+}
+
+svnurl(){
+	svn info | sed -ne 's/^URL: //p'
 }
