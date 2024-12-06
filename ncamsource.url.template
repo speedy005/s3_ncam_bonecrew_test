@@ -1,15 +1,15 @@
-#Save this file as oscamsource.url to influence the source(s)
-#from which the oscam-git repository is cloned from
+#Save this file as ncamsource.url to influence the source(s)
+#from which the ncam-git repository is cloned from
 
-### STANDARD OSCAM REPOSITORY ###
-#   To change the standard oscam repository, uncomment
+### STANDARD NCAM REPOSITORY ###
+#   To change the standard ncam repository, uncomment
 #   the line starting with #trunkurl and point it
 #   to a different location.
 #
 #trunkurl="https://domain/own-repo.git"
 
-### CUSTOM OSCAM REPOSITORY IDENTIFIERS ###
-#   To flexible switch the oscam repository, uncomment
+### CUSTOM NCAM REPOSITORY IDENTIFIERS ###
+#   To flexible switch the ncam repository, uncomment
 #   the lines starting with #*IDENT, #*FOO, #*BAR and
 #   point it to locations of your choice.
 #
