@@ -35,7 +35,8 @@ echo -e $C"
    ╚════██║ ╚═══██╗    =================================
    ███████║██████╔    $p_l by$y_l Gorgone$p_l 2021$C,$y_l Bonecrew$p_l 2024$C
    ╚══════╝╚═════╗     =================================$C
- $(printf "$SOURCE ${txt_repo::4}:" | xargs) $w_l$(basename ${repodir}) $($(REPOURLDIRTY) &&       printf"$r_l($txt_wc_deviation)")\n$W"
+ 
+   $(printf "$SOURCE ${txt_repo::4}:" | xargs) $w_l$(basename ${repodir}) $($(REPOURLDIRTY) &&       printf"$r_l($txt_wc_deviation)")\n$W"
 };
  
       
