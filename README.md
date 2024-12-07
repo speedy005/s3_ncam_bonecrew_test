@@ -5,6 +5,8 @@ perform the following
 für eine einfache einfache console cam
 folgendes ausführen
 
+git clone https://github.com/speedy005/s3_ncam_bonecrew_test
+
 ./s3 checkout
 
 ./s3 native
