@@ -138,7 +138,7 @@ _create_native_profile(){
 _toolchainname="native";
 default_use="USE_LIBCRYPTO";
 _ncamconfdir_default="/usr/local/etc";
-_namconfdir_custom="not_set";
+_ncamconfdir_custom="not_set";
 _compiler="$($g -dumpmachine)-";
 _tc_info="Native System Compiler \
 $(gcc --version)";
