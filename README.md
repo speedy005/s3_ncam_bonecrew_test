@@ -19,6 +19,10 @@ git clone https://github.com/speedy005/s3_ncam_bonecrew_test
 
 ./s3 menu
 
+./s3 tccheck your_toolchainname
+
+,/s3 tcupdate your_toolchainname
+
 
 
 unter support/software kann nun andere software cross compiliert werden
