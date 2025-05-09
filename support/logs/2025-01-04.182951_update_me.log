@@ -1,0 +1,74 @@
+Von https://github.com/speedy005/s3_ncam_bonecrew_test
+   1616610..9ee518b  master     -> origin/master
+Auf Branch master
+Ihr Branch ist 3 Commits hinter 'origin/master', und kann vorgespult werden.
+  (benutzen Sie "git pull", um Ihren lokalen Branch zu aktualisieren)
+
+Änderungen, die nicht zum Commit vorgemerkt sind:
+  (benutzen Sie "git add/rm <Datei>...", um die Änderungen zum Commit vorzumerken)
+  (benutzen Sie "git restore <Datei>...", um die Änderungen im Arbeitsverzeichnis zu verwerfen)
+	geändert:       ncamsource.url
+	geändert:       support/configs/compiler_option
+	geändert:       support/configs/config.sh.master
+	geändert:       support/configs/simplebuild.config
+	geändert:       support/configs/upx_option
+	geändert:       support/functions/_repo
+	gelöscht:       support/patches/no.patch
+	geändert:       support/toolchains.cfg/vuplus4k_armv7a
+
+Unversionierte Dateien:
+  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
+	USE_DIAG.log
+	archive
+	binaries
+	lastbuild.log
+	logs
+	ncam-git/
+	patches
+	profiles
+	software
+	support/archive/
+	support/backup_repo/
+	support/binaries/
+	support/configs/Makefile.master
+	support/configs/plugin_update_toolchain.config
+	support/downloads/
+	support/logs/
+	support/menu_save/
+	support/profiles/vuplus4k_armv7a_chris_ok.profile
+	support/toolchains.cfg/fritz3490_5490_5491_6890_7430_7490_7560_7580_7583_7583vdsl_7590_7590AX_ssl_multi_mips-freetz
+	support/toolchains.cfg/fritz4040_4050_4060_4690_5590_5690_5690Pro_68504g_68505g_7510_7520_7520B_7530_7530AX_7530AXB_7682_7690_ssl_multi_arm-freetz
+	support/toolchains.cfg/native
+	support/toolchains/
+
+keine Änderungen zum Commit vorgemerkt (benutzen Sie "git add" und/oder "git commit -a")
+
+START: s3 updates pending
+  Local revision 621: 1616610 Update ncamsource.url
+ Online revision 624: 9ee518b Update s3
+
+9ee518b Update s3
+645ffc1 Update ncamsource.url
+4a07e52 Update _uploadcam
+
+STAGE 1: Try simple pull (auto-merge)...
+
+error: Ihre lokalen Änderungen in den folgenden Dateien würden durch den Merge
+überschrieben werden:
+	ncamsource.url
+Bitte committen oder stashen Sie Ihre Änderungen, bevor Sie mergen.
+Abbruch
+Aktualisiere 1616610..9ee518b
+
+STAGE 2: Reset conflicting tracked files/folders...
+
+1 Pfad vom Index aktualisiert
+Aktualisiere 1616610..9ee518b
+Fast-forward
+ ncamsource.url               |  3 ++-
+ s3                           |  2 +-
+ support/functions/_uploadcam | 11 +++++++----
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+
+UPDATE finished.
+

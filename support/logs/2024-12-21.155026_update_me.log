@@ -1,0 +1,80 @@
+Von https://github.com/speedy005/s3_ncam_bonecrew_test
+   a7f3239..1616610  master     -> origin/master
+Auf Branch master
+Ihr Branch ist 9 Commits hinter 'origin/master', und kann vorgespult werden.
+  (benutzen Sie "git pull", um Ihren lokalen Branch zu aktualisieren)
+
+Änderungen, die nicht zum Commit vorgemerkt sind:
+  (benutzen Sie "git add/rm <Datei>...", um die Änderungen zum Commit vorzumerken)
+  (benutzen Sie "git restore <Datei>...", um die Änderungen im Arbeitsverzeichnis zu verwerfen)
+	geändert:       README.md
+	geändert:       ncamsource.url
+	geändert:       support/configs/config.sh.master
+	geändert:       support/configs/urls
+	geändert:       support/functions/_repo
+	gelöscht:       support/patches/no.patch
+	geändert:       support/toolchains.cfg/vuplus4k_armv7a
+
+Unversionierte Dateien:
+  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
+	USE_DIAG.log
+	archive
+	binaries
+	lastbuild.log
+	logs
+	ncam-git/
+	patches
+	profiles
+	software
+	support/archive/
+	support/backup_repo/
+	support/binaries/
+	support/configs/Makefile.master
+	support/configs/plugin_update_toolchain.config
+	support/downloads/
+	support/logs/
+	support/profiles/vuplus4k_armv7a_chris_ok.profile
+	support/toolchains.cfg/native
+	support/toolchains/
+
+keine Änderungen zum Commit vorgemerkt (benutzen Sie "git add" und/oder "git commit -a")
+
+START: s3 updates pending
+  Local revision 612: a7f3239 Update s3
+ Online revision 621: 1616610 Update ncamsource.url
+
+1616610 Update ncamsource.url
+c1d047f Update upload.example.ssh
+b518ae9 Update _uploadcam
+20f2561 Update _repo
+fd25668 Update urls
+90c8911 Update urls
+4a7b4a8 Update README.md
+f8b50e4 Update README.md
+271f9e2 Update plugin_update_toolchain.config.template
+
+STAGE 1: Try simple pull (auto-merge)...
+
+error: Ihre lokalen Änderungen in den folgenden Dateien würden durch den Merge
+überschrieben werden:
+	README.md
+	support/configs/urls
+	support/functions/_repo
+Bitte committen oder stashen Sie Ihre Änderungen, bevor Sie mergen.
+Abbruch
+Aktualisiere a7f3239..1616610
+
+STAGE 2: Reset conflicting tracked files/folders...
+
+3 Pfade vom Index aktualisiert
+Aktualisiere a7f3239..1616610
+Fast-forward
+ README.md                           | 17 ++++++++++++++++-
+ support/configs/urls                |  1 +
+ support/functions/_repo             |  3 ++-
+ support/functions/_uploadcam        | 10 +++++++---
+ support/profiles/upload.example.ssh |  3 ++-
+ 5 files changed, 28 insertions(+), 6 deletions(-)
+
+UPDATE finished.
+

@@ -1,0 +1,622 @@
+Plugin s3.TUP v0.26.2 - Aktualisierung Bibliothek Log - 2025-05-07 17:53:26
+================================================================================
+Befehlszeilen zum Erstellen von (4/7) vuplus4k_armv7a: Bibliothek PCSC-Lite 2.3.3:
+================================================================================
+cd /tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/;
+export TOOLCHAIN=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a;
+export PATH="$TOOLCHAIN/bin:$PATH";
+[ -n "" ] && export CFLAGS="";
+export CC=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc;
+export PKG_CONFIG_PATH="$(find /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr -name "pkgconfig" -type d)";
+LIBUSB_LIBS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --libs libusb-1.0)";
+LIBUSB_CFLAGS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --cflags libusb-1.0)";
+[ "ct-ng" == "android-ndk" ] && export ANDROID_NDK="/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a";
+[ "ct-ng" == "android-ndk" ] && LIBUSB_LIBS="-L/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf/ -lusb-1.0";
+[ "ct-ng" == "android-ndk" ] && LOG="LIBS=-llog" || LOG="";
+[ "ct-ng" == "android-ndk" ] && FLAGS="--enable-static --disable-shared --disable-libudev $LOG" || FLAGS="--enable-static --disable-libudev";
+find . -name configure.ac -type f -exec sed -i s/[0-9].[0-9].[0-9]/2.3.3/g {} \;;
+find . -name pcsc-wirecheck-main.c -type f -exec sed -i 's/pcsc_assert_wire_constants ()/0/g' {} \;;
+./bootstrap && ./configure --prefix=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr --host=armv7a-vuplus4k-linux-gnueabihf $FLAGS --disable-polkit --disable-libsystemd --with-systemdsystemunitdir=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/systemd/system LIBUSB_LIBS="${LIBUSB_LIBS}" LIBUSB_CFLAGS="${LIBUSB_CFLAGS}";
+make -j12;
+make install;
+[ "ct-ng" == "android-ndk" ] && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/" -maxdepth 1 -name "libpcsc*" -execdir ln -frs "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/{}" "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//{}" \;;
+_check_lib "PCSC";
+[ "ct-ng" == "android-ndk" ] && zip -j "$bdir/armv7a-vuplus4k-linux-gnueabihf-pcscd.zip" -xi "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin/pcscd";
+git clone https://github.com/LudovicRousseau/pcsc-tools.git; cd pcsc-tools;
+./bootstrap && ./configure --prefix=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr --host=armv7a-vuplus4k-linux-gnueabihf PCSC_LIBS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --libs libpcsclite)" PCSC_CFLAGS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --cflags libpcsclite)"; make -j12; make install;
+mkdir "${LIB_PCSC_name}-${LIB_PCSC_version}" && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr" -maxdepth 2 \( -name "libpcsclite.so*" -o -name "libpcscspy.so*" -o -name "pcsc_scan" \) -exec cp -af "{}" "${LIB_PCSC_name}-${LIB_PCSC_version}" \; && zip -9yr "$bdir/${TOOLCHAIN##*/}-libs.zip" "${LIB_PCSC_name}-${LIB_PCSC_version}";
+================================================================================
++ test -f Makefile
++ rm -rf *.cache *.m4 config.guess config.log config.status config.sub depcomp ltmain.sh
++ autoreconf --verbose --install
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal -I m4
+aclocal: warning: couldn't open directory 'm4': No such file or directory
+autoreconf: configure.ac: tracing
+autoreconf: running: libtoolize --copy
+libtoolize: putting auxiliary files in '.'.
+libtoolize: copying file './ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+libtoolize: copying file 'm4/libtool.m4'
+libtoolize: copying file 'm4/ltoptions.m4'
+libtoolize: copying file 'm4/ltsugar.m4'
+libtoolize: copying file 'm4/ltversion.m4'
+libtoolize: copying file 'm4/lt~obsolete.m4'
+autoreconf: configure.ac: not using Intltool
+autoreconf: configure.ac: not using Gtkdoc
+autoreconf: running: aclocal -I m4
+autoreconf: running: /usr/bin/autoconf
+autoreconf: running: /usr/bin/autoheader
+autoreconf: running: automake --add-missing --copy --no-force
+configure.ac:58: installing './ar-lib'
+configure.ac:16: installing './compile'
+configure.ac:15: installing './config.guess'
+configure.ac:15: installing './config.sub'
+configure.ac:8: installing './install-sh'
+configure.ac:8: installing './missing'
+doc/example/Makefile.am: installing './depcomp'
+configure.ac: installing './ylwrap'
+autoreconf: Leaving directory '.'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-strip... armv7a-vuplus4k-linux-gnueabihf-strip
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... armv7a-vuplus4k-linux-gnueabihf
+checking for armv7a-vuplus4k-linux-gnueabihf-gcc... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc accepts -g... yes
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc option to enable C11 features... none needed
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc... gcc3
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking whether byte ordering is bigendian... no
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking how to run the C preprocessor... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -E
+checking whether ln -s works... yes
+checking whether make sets $(MAKE)... (cached) yes
+checking for flex... flex
+checking for lex output file root... lex.yy
+checking for lex library... none needed
+checking whether yytext is a pointer... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-ar... armv7a-vuplus4k-linux-gnueabihf-ar
+checking the archiver (armv7a-vuplus4k-linux-gnueabihf-ar) interface... ar
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc is Clang... no
+checking whether pthreads work with "-pthread" and "-lpthread"... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking whether more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for pthread_cancel... yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... (cached) /usr/bin/sed
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld
+checking if the linker (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B
+checking the name lister (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to armv7a-vuplus4k-linux-gnueabihf format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld option to reload object files... -r
+checking for armv7a-vuplus4k-linux-gnueabihf-file... no
+checking for file... file
+checking for armv7a-vuplus4k-linux-gnueabihf-objdump... armv7a-vuplus4k-linux-gnueabihf-objdump
+checking how to recognize dependent libraries... pass_all
+checking for armv7a-vuplus4k-linux-gnueabihf-dlltool... no
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for armv7a-vuplus4k-linux-gnueabihf-ar... (cached) armv7a-vuplus4k-linux-gnueabihf-ar
+checking for archiver @FILE support... @
+checking for armv7a-vuplus4k-linux-gnueabihf-strip... (cached) armv7a-vuplus4k-linux-gnueabihf-strip
+checking for armv7a-vuplus4k-linux-gnueabihf-ranlib... armv7a-vuplus4k-linux-gnueabihf-ranlib
+checking command to parse /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B output from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for armv7a-vuplus4k-linux-gnueabihf-mt... no
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc static flag -static works... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -c -o file.o... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+checking whether the /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc linker (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking for getopt.h... yes
+checking for sys/filio.h... no
+checking for syslog.h... yes
+checking for dl.h... no
+checking for fcntl.h... yes
+checking for alloca.h... yes
+checking for an ANSI C-conforming const... yes
+checking for uid_t in sys/types.h... yes
+checking for size_t... yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for struct dirent.d_type... yes
+checking for error_at_line... yes
+checking whether lstat correctly handles trailing slash... yes
+checking whether stat accepts an empty string... yes
+checking for vprintf... yes
+checking for getopt_long... yes
+checking for nanosleep... yes
+checking for strerror... yes
+checking for vsnprintf... yes
+checking for getrandom... yes
+checking for secure_getenv... yes
+checking for issetugid... no
+checking for working alloca.h... yes
+checking for alloca... yes
+checking for inline... inline
+checking for -fvisibility=hidden... yes
+checking for library containing dlopen... -ldl
+checking for socket in -lsocket... no
+checking for mq_getattr in -lrt... yes
+checking for libusb-1.0... yes
+checking for libusb.h... yes
+checking for libusb_init... yes
+
+PC/SC lite has been configured with following options:
+
+Version:             2.3.3
+System binaries:     /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin
+Configuration dir:   /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d
+
+Host:                armv7a-vuplus4k-linux-gnueabihf
+Compiler:            /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+Preprocessor flags:  -I${top_srcdir}/src 
+Compiler flags:      -Wall -fno-common -g -O2
+Preprocessor flags:  -I${top_srcdir}/src 
+Linker flags:        
+Libraries:           -ldl  -lrt
+
+PTHREAD_CFLAGS:      -pthread
+PTHREAD_LIBS:        -lpthread
+PCSC_ARCH:           Linux
+
+polkit support:         no
+polkit policy dir:      
+libudev support:        no
+libusb support:         yes
+USB drop directory:     /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers
+ATR parsing messages:   false
+ipcdir:                 /run/pcscd
+use serial:             yes
+use usb:                yes
+use libsystemd:         no
+systemd unit directory: /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/systemd/system
+serial config dir.:     /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d
+filter:                 yes
+documentation:          yes
+
+PCSCLITE_FEATURES:       Linux armv7a-vuplus4k-linux-gnueabihf serial usb libusb usbdropdir=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers ipcdir=/run/pcscd filter configdir=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d
+
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating doc/Makefile
+config.status: creating doc/doxygen.conf
+config.status: creating doc/pcscd.8
+config.status: creating doc/reader.conf.5
+config.status: creating doc/example/Makefile
+config.status: creating etc/Makefile
+config.status: creating src/Makefile
+config.status: creating src/libpcsclite.pc
+config.status: creating src/pcscd.h
+config.status: creating src/PCSC/pcsclite.h
+config.status: creating src/spy/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+make  all-recursive
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird betreten
+Making all in src
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird betreten
+Making all in spy
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird betreten
+pod2man \
+	--center="PC/SC lite" \
+	--release="pcsc-lite 2.3.3" \
+	--date=2024-01-01 \
+	./pcsc-spy.pod > pcsc-spy.1
+  CC       libpcscspy.lo
+  CC       ../sys_unix.lo
+  CCLD     libpcscspy.la
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird verlassen
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird betreten
+  CC       testpcsc.o
+  CC       error.lo
+  CC       g_defines.lo
+  CC       libredirect.lo
+  CC       pcsc-wirecheck-gen.o
+  CC       pcsc-wirecheck-main.o
+  CC       pcscd-auth.o
+  CC       pcscd-atrhandler.o
+  LEX      configfile.c
+  CC       pcscd-debuglog.o
+  CC       pcscd-dyn_macosx.o
+  CC       pcscd-dyn_unix.o
+  CC       pcscd-eventhandler.o
+  CC       pcscd-hotplug_generic.o
+  CC       pcscd-ifdwrapper.o
+  CC       pcscd-pcscdaemon.o
+  CC       pcscd-prothandler.o
+  CC       pcscd-readerfactory.o
+  CC       pcscd-simclist.o
+  CC       pcscd-sys_unix.o
+/bin/bash ../ylwrap tokenparser.l lex.tp.c tokenparser.c -- "flex" -Ptp  
+  CC       pcscd-hotplug_libudev.o
+  CC       pcscd-hotplug_libusb.o
+  CC       pcscd-hotplug_macosx.o
+  CC       pcscd-utils.o
+  CC       pcscd-winscard.o
+  CC       pcscd-winscard_msg.o
+  CC       pcscd-winscard_msg_srv.o
+  CC       pcscd-winscard_svc.o
+  CC       libpcsclite_real_la-debug.lo
+  CC       libpcsclite_real_la-winscard_clnt.lo
+  CC       libpcsclite_real_la-simclist.lo
+  CC       libpcsclite_real_la-sys_unix.lo
+  CC       libpcsclite_real_la-utils.lo
+  CC       libpcsclite_real_la-winscard_msg.lo
+  CCLD     libpcsclite.la
+  CCLD     pcsc-wirecheck-gen
+  CC       pcscd-configfile.o
+  CC       pcscd-tokenparser.o
+  CCLD     testpcsc
+rm -f pcsc-wirecheck-dist.c
+./pcsc-wirecheck-gen > pcsc-wirecheck-dist.c.tmp
+/bin/bash: Zeile 8: ./pcsc-wirecheck-gen: Kann die Binärdatei nicht ausführen: Fehler im Format der Programmdatei
+mv pcsc-wirecheck-dist.c.tmp pcsc-wirecheck-dist.c
+  CC       pcsc-wirecheck-dist.o
+  CCLD     pcsc-wirecheck
+  CCLD     pcscd
+  CCLD     libpcsclite_real.la
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird verlassen
+Making all in etc
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird betreten
+rm -f pcscd.service pcscd.service.tmp
+rm -f pcscd.socket pcscd.socket.tmp
+srcdir=''; \
+  test -f ./pcscd.service.in || srcdir=./; \
+  sed -e 's|@sysconfdir[@]|/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc|g' -e 's|@sbindir_exp[@]|/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin|g' -e 's|@ipcdir[@]|/run/pcscd|g' ${srcdir}pcscd.service.in >pcscd.service.tmp
+srcdir=''; \
+  test -f ./pcscd.socket.in || srcdir=./; \
+  sed -e 's|@sysconfdir[@]|/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc|g' -e 's|@sbindir_exp[@]|/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin|g' -e 's|@ipcdir[@]|/run/pcscd|g' ${srcdir}pcscd.socket.in >pcscd.socket.tmp
+chmod +x pcscd.service.tmp
+chmod +x pcscd.socket.tmp
+chmod a-w pcscd.service.tmp
+chmod a-w pcscd.socket.tmp
+mv pcscd.service.tmp pcscd.service
+mv pcscd.socket.tmp pcscd.socket
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird verlassen
+Making all in doc
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+Making all in .
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+make[3]: Für das Ziel „all-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+Making all in example
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird betreten
+  CC       pcsc_demo-pcsc_demo.o
+  CCLD     pcsc_demo
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird verlassen
+Making install in src
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird betreten
+Making install in spy
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird betreten
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+ /usr/bin/install -c pcsc-spy '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib'
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libpcscspy.la '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib'
+libtool: install: /usr/bin/install -c .libs/libpcscspy.so.0.0.0 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcscspy.so.0.0.0
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcscspy.so.0.0.0 libpcscspy.so.0 || { rm -f libpcscspy.so.0 && ln -s libpcscspy.so.0.0.0 libpcscspy.so.0; }; })
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcscspy.so.0.0.0 libpcscspy.so || { rm -f libpcscspy.so && ln -s libpcscspy.so.0.0.0 libpcscspy.so; }; })
+libtool: install: /usr/bin/install -c .libs/libpcscspy.lai /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcscspy.la
+libtool: install: /usr/bin/install -c .libs/libpcscspy.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcscspy.a
+libtool: install: chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcscspy.a
+libtool: install: armv7a-vuplus4k-linux-gnueabihf-ranlib /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcscspy.a
+libtool: finish: PATH="/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin" ldconfig -n /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/doc/pcsc-lite'
+ /usr/bin/install -c -m 644 setup_spy.sh '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/doc/pcsc-lite'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man1'
+ /usr/bin/install -c -m 644 pcsc-spy.1 '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man1'
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src/spy“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird betreten
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib'
+ /bin/bash ../libtool   --mode=install /usr/bin/install -c   libpcsclite.la libpcsclite_real.la '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib'
+libtool: install: /usr/bin/install -c .libs/libpcsclite.so.1.0.0 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.so.1.0.0
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcsclite.so.1.0.0 libpcsclite.so.1 || { rm -f libpcsclite.so.1 && ln -s libpcsclite.so.1.0.0 libpcsclite.so.1; }; })
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcsclite.so.1.0.0 libpcsclite.so || { rm -f libpcsclite.so && ln -s libpcsclite.so.1.0.0 libpcsclite.so; }; })
+libtool: install: /usr/bin/install -c .libs/libpcsclite.lai /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.la
+libtool: install: /usr/bin/install -c .libs/libpcsclite_real.so.1.0.0 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite_real.so.1.0.0
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcsclite_real.so.1.0.0 libpcsclite_real.so.1 || { rm -f libpcsclite_real.so.1 && ln -s libpcsclite_real.so.1.0.0 libpcsclite_real.so.1; }; })
+libtool: install: (cd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libpcsclite_real.so.1.0.0 libpcsclite_real.so || { rm -f libpcsclite_real.so && ln -s libpcsclite_real.so.1.0.0 libpcsclite_real.so; }; })
+libtool: install: /usr/bin/install -c .libs/libpcsclite_real.lai /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite_real.la
+libtool: install: /usr/bin/install -c .libs/libpcsclite.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.a
+libtool: install: chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.a
+libtool: install: armv7a-vuplus4k-linux-gnueabihf-ranlib /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.a
+libtool: install: /usr/bin/install -c .libs/libpcsclite_real.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite_real.a
+libtool: install: chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite_real.a
+libtool: install: armv7a-vuplus4k-linux-gnueabihf-ranlib /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite_real.a
+libtool: finish: PATH="/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/sbin" ldconfig -n /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin'
+  /bin/bash ../libtool   --mode=install /usr/bin/install -c pcscd '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin'
+libtool: install: /usr/bin/install -c pcscd /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/sbin/pcscd
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC'
+ /usr/bin/install -c -m 644  PCSC/debuglog.h PCSC/ifdhandler.h PCSC/reader.h PCSC/winscard.h PCSC/wintypes.h '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC'
+ /usr/bin/install -c -m 644 PCSC/pcsclite.h '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+ /usr/bin/install -c -m 644 libpcsclite.pc '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/src“ wird verlassen
+Making install in etc
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird betreten
+make[2]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/systemd/system'
+ /usr/bin/install -c -m 644 pcscd.service pcscd.socket '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/systemd/system'
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/etc“ wird verlassen
+Making install in doc
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+Making install in .
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+make[3]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/doc/pcsc-lite'
+ /usr/bin/install -c -m 644 README.polkit '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/doc/pcsc-lite'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man5'
+ /usr/bin/install -c -m 644 reader.conf.5 '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man5'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man8'
+ /usr/bin/install -c -m 644 pcscd.8 '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man8'
+make  install-data-hook
+make[4]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird betreten
+make[4]: Für das Ziel „install-data-hook“ ist nichts zu tun.
+make[4]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+Making install in example
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird betreten
+make[3]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[3]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc/example“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/doc“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird betreten
+make[2]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[2]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3“ wird verlassen
+
+Überprüfen der PCSC-Header-Dateien und Erstellen einer Verknüpfung zu den korrekten Header-Dateien, wenn der letzte Compiler Pfad auf den falschen Speicherort verweist...
+PCSC-Header-Dateien befinden sich am richtigen Speicherort: /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC
+Klone nach 'pcsc-tools' …
++ test -f Makefile
++ rm -rf *.cache *.m4 config.guess config.log config.status config.sub depcomp ltmain.sh
++ autoreconf --verbose --install
+autoreconf: export WARNINGS=
+autoreconf: Entering directory '.'
+autoreconf: configure.ac: not using Gettext
+autoreconf: running: aclocal 
+autoreconf: configure.ac: tracing
+autoreconf: configure.ac: not using Libtool
+autoreconf: configure.ac: not using Intltool
+autoreconf: configure.ac: not using Gtkdoc
+autoreconf: running: /usr/bin/autoconf
+autoreconf: running: /usr/bin/autoheader
+autoreconf: running: automake --add-missing --copy --no-force
+autoreconf: Leaving directory '.'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-strip... armv7a-vuplus4k-linux-gnueabihf-strip
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... armv7a-vuplus4k-linux-gnueabihf
+checking for armv7a-vuplus4k-linux-gnueabihf-gcc... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc accepts -g... yes
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc option to enable C11 features... none needed
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc... gcc3
+checking for msgfmt... yes
+checking for a sed that does not truncate output... /usr/bin/sed
+checking how to run the C preprocessor... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc is Clang... no
+checking whether pthreads work with "-pthread" and "-lpthread"... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking whether more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for libpcsclite... yes
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for winscard.h... yes
+checking for SCardEstablishContext... yes
+checking for unistd.h... (cached) yes
+checking for time.h... yes
+checking for string.h... (cached) yes
+checking for stdio.h... (cached) yes
+checking for stdlib.h... (cached) yes
+checking for sys/time.h... yes
+checking for sysexits.h... yes
+checking for sys/mkdev.h... no
+checking for sys/sysmacros.h... yes
+
+pcsc-tools has been configured with following options:
+
+pcsc_dir:   /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/pcsc
+ATR parser: ATR_analysis
+CFLAGS:     -g -O2
+CPPFLAGS:   
+
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating ATR_analysis
+config.status: creating ATR_analysis.1p
+config.status: creating po/Makefile
+config.status: creating gscriptor.desktop
+config.status: creating config.h
+config.status: executing depfiles commands
+make  all-recursive
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird betreten
+Making all in po
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools/po“ wird betreten
+msgfmt --check --statistics --verbose -o ru.gmo ru.po
+msgfmt --check --statistics --verbose -o fr.gmo fr.po
+ru.po: 74 übersetzte Meldungen, 1 unübersetzte Meldung.
+fr.po: 61 übersetzte Meldungen, 14 unübersetzte Meldungen.
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools/po“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird betreten
+  CC       pcsc_scan-pcsc_scan.o
+  CCLD     pcsc_scan
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird verlassen
+Making install in po
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools/po“ wird betreten
+cd .; \
+targetdir='/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/locale'; \
+languages='ru fr'; \
+for lang in $languages; do \
+	dest="$targetdir/$lang/LC_MESSAGES"; \
+	mkdir -p $dest && chmod +w $dest || exit 1; \
+	dest="$targetdir/$lang/LC_MESSAGES/pcsc-tools.mo"; \
+	cat="$lang.gmo"; \
+	echo "installing $cat as $dest"; \
+	cp -f /tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools/po/$cat $dest && chmod 644 $dest || exit 1; \
+done
+installing ru.gmo as /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/locale/ru/LC_MESSAGES/pcsc-tools.mo
+installing fr.gmo as /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/locale/fr/LC_MESSAGES/pcsc-tools.mo
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools/po“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird betreten
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+  /usr/bin/install -c pcsc_scan '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+ /usr/bin/install -c ATR_analysis scriptor gscriptor '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/bin'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/applications'
+ /usr/bin/install -c -m 644 gscriptor.desktop '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/applications'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man1'
+ /usr/bin/install -c -m 644 pcsc_scan.1 ATR_analysis.1p scriptor.1 gscriptor.1 '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man1'
+ /usr/bin/mkdir -p '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/pcsc'
+ /usr/bin/install -c -m 644 smartcard_list.txt gscriptor.png '/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/pcsc'
+make[2]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2025-05-07.175107/pcsc-lite-2.3.3/pcsc-tools“ wird verlassen
+  adding: PCSC-Lite-2.3.3/ (stored 0%)
+  adding: PCSC-Lite-2.3.3/libpcsclite.so.1.0.0 (deflated 64%)
+  adding: PCSC-Lite-2.3.3/libpcsclite.so.1 (stored 0%)
+  adding: PCSC-Lite-2.3.3/libpcsclite.so (stored 0%)
+  adding: PCSC-Lite-2.3.3/libpcscspy.so.0 (stored 0%)
+  adding: PCSC-Lite-2.3.3/pcsc_scan (deflated 55%)
+  adding: PCSC-Lite-2.3.3/libpcscspy.so (stored 0%)
+  adding: PCSC-Lite-2.3.3/libpcscspy.so.0.0.0 (deflated 57%)

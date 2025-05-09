@@ -1,0 +1,846 @@
++-------------------------------------------------------------------------------
+| NCam ver: _bonecrew_r1.1.6_2024_12_11863_ rev: git8e4a653 target: armv7a-vuplus4k-linux-gnueabihf-ssl-libcurl-libusb-pcsc-libdvbcsa
+| Tools:
+|  CROSS    = /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-
+|  CC       = /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+|  STRIP    = /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-strip
+|  SSL      = /usr/bin/openssl
+| Settings:
+|  CONF_DIR = /etc/tuxbox/config/ncam
+|  CC_OPTS  = -O3 -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns
+|  CC_WARN  = -W -Wall -Wshadow -Wredundant-decls -Wstrict-prototypes -Wold-style-definition
+|  CFLAGS   = -DSTATIC_LIBDVBCSA=1 -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LDFLAGS  = -Wl,--gc-sections -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/../armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LIBS     = /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libssl.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libcrypto.a -lcurl /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libusb-1.0.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libpcsclite.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libdvbcsa.a -lm -lpthread -ldl -lrt
+|  UseFlags = USE_SSL=1 USE_LIBCRYPTO=1 USE_LIBCURL=1 USE_LIBUSB=1 USE_PCSC=1 USE_UTF8=1 USE_LIBDVBCSA=1
+| Config:
+|  Addons   : WEBIF WEBIF_LIVELOG WEBIF_JQUERY WITH_COMPRESS_WEBIF TOUCH WITH_SSL HAVE_DVBAPI WITH_NEUTRINO READ_SDT_CHARSETS IRDETO_GUESSING CS_ANTICASC WITH_DEBUG MODULE_MONITOR WITH_LB CS_CACHEEX CS_CACHEEX_AIO CW_CYCLE_CHECK LCDSUPPORT LEDSUPPORT CLOCKFIX WITH_SIGNING WITH_CARDLIST WITH_EMU WITH_SOFTCAM
+|  Protocols: CAMD33 CAMD35 CAMD35_TCP NEWCAMD CCCAM CCCSHARE GBOX RADEGAST SCAM SERIAL CONSTCW PANDORA GHTTP STREAMRELAY
+|  Readers  : NAGRA NAGRA_MERLIN IRDETO CONAX CRYPTOWORKS SECA VIACCESS VIDEOGUARD DRE TONGFANG STREAMGUARD JET BULCRYPT GRIFFIN DGCRYPT
+|  CardRdrs : PHOENIX INTERNAL SC8IN1 MP35 SMARGO STAPI STINGER DRECAS SMART PCSC
+|  Compiler : armv7a-vuplus4k-linux-gnueabihf-gcc (crosstool-NG 1.26.0.30_cd0d146 - simplebuild3) 13.2.0
+|  Signing  : OpenSSL 3.0.2 15 Mar 2022
+|             Public Key Algorithm: id-ecPublicKey, Public-Key: (256 bit), Signature Algorithm: ecdsa-with-SHA256,
+|             Valid Not After: 23.12.2025 19:14:48, Subject: CN = Private NCam CA Certificate
+|  Config   : build/armv7a-vuplus4k-linux-gnueabihf-ssl-libcurl-libusb-pcsc-libdvbcsa/config.mak
+|  Binary   : /opt/s3_ncam_bonecrew_test/support/binaries/ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed
++-------------------------------------------------------------------------------
+HOSTCC	webif/pages_gen
+GEN	webif/pages.c
+GEN	Compressed 572232 template bytes into 249430 bytes. 322802 saved bytes (56.41%).
+CC	cscrypt/i_cbc.c
+CC	cscrypt/i_ecb.c
+CC	cscrypt/i_skey.c
+CC	cscrypt/rc6.c
+CC	cscrypt/jet_twofish.c
+CC	cscrypt/fast_aes.c
+CC	cscrypt/sha256.c
+CC	cscrypt/jet_dh.c
+CC	cscrypt/mdc2.c
+CC	cscrypt/md5.c
+CC	cardlist.c
+CC	csctapi/atr.c
+CC	csctapi/icc_async.c
+CC	csctapi/io_serial.c
+CC	cscrypt/des.c
+CC	csctapi/protocol_t0.c
+CC	csctapi/protocol_t1.c
+cscrypt/md5.c: In function '__md5_crypt':
+cscrypt/md5.c:320:9: warning: 'MD5_Init' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  320 |         MD5_Init(&ctx);
+      |         ^~~~~~~~
+In file included from cscrypt/md5.h:5,
+                 from cscrypt/md5.c:24:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int MD5_Init(MD5_CTX *c);
+      |                           ^~~~~~~~
+cscrypt/md5.c:324:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  324 |         MD5_Update(&ctx, (const unsigned char *)pw, pw_len);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:327:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  327 |         MD5_Update(&ctx, (const unsigned char *)__md5__magic, __md5__magic_len);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:330:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  330 |         MD5_Update(&ctx, (const unsigned char *)sp, sl);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:333:9: warning: 'MD5_Init' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  333 |         MD5_Init(&ctx1);
+      |         ^~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int MD5_Init(MD5_CTX *c);
+      |                           ^~~~~~~~
+cscrypt/md5.c:334:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  334 |         MD5_Update(&ctx1, (const unsigned char *)pw, pw_len);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:335:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  335 |         MD5_Update(&ctx1, (const unsigned char *)sp, sl);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:336:9: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  336 |         MD5_Update(&ctx1, (const unsigned char *)pw, pw_len);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:337:9: warning: 'MD5_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  337 |         MD5_Final(final, &ctx1);
+      |         ^~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);
+      |                           ^~~~~~~~~
+cscrypt/md5.c:339:17: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  339 |                 { MD5_Update(&ctx, (const unsigned char *)final, pl > 16 ? 16 : pl); }
+      |                 ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:347:17: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  347 |                 MD5_Update(&ctx, ((i & 1) ? final : (const unsigned char *) pw), 1);
+      |                 ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:355:9: warning: 'MD5_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  355 |         MD5_Final(final, &ctx);
+      |         ^~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);
+      |                           ^~~~~~~~~
+cscrypt/md5.c:364:17: warning: 'MD5_Init' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  364 |                 MD5_Init(&ctx1);
+      |                 ^~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int MD5_Init(MD5_CTX *c);
+      |                           ^~~~~~~~
+cscrypt/md5.c:366:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  366 |                         { MD5_Update(&ctx1, (const unsigned char *)pw, pw_len); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:368:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  368 |                         { MD5_Update(&ctx1, (const unsigned char *)final, 16); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:371:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  371 |                         { MD5_Update(&ctx1, (const unsigned char *)sp, sl); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:374:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  374 |                         { MD5_Update(&ctx1, (const unsigned char *)pw, pw_len); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:377:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  377 |                         { MD5_Update(&ctx1, (const unsigned char *)final, 16); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:379:25: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  379 |                         { MD5_Update(&ctx1, (const unsigned char *)pw, pw_len); }
+      |                         ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~
+cscrypt/md5.c:380:17: warning: 'MD5_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  380 |                 MD5_Final(final, &ctx1);
+      |                 ^~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);
+      |                           ^~~~~~~~~
+CC	csctapi/ifd_mp35.c
+cscrypt/mdc2.c: In function 'mdc2_body':
+cscrypt/mdc2.c:636:17: warning: 'DES_set_odd_parity' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  636 |                 DES_set_odd_parity(&c->h);
+      |                 ^~~~~~~~~~~~~~~~~~
+In file included from cscrypt/mdc2.h:63,
+                 from cscrypt/mdc2.c:3:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:176:28: note: declared here
+  176 | OSSL_DEPRECATEDIN_3_0 void DES_set_odd_parity(DES_cblock *key);
+      |                            ^~~~~~~~~~~~~~~~~~
+cscrypt/mdc2.c:637:17: warning: 'DES_set_key_unchecked' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  637 |                 DES_set_key_unchecked(&c->h, &k);
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:192:6: note: declared here
+  192 | void DES_set_key_unchecked(const_DES_cblock *key, DES_key_schedule *schedule);
+      |      ^~~~~~~~~~~~~~~~~~~~~
+cscrypt/mdc2.c:638:17: warning: 'DES_encrypt1' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  638 |                 DES_encrypt1(d, &k, 1);
+      |                 ^~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:121:6: note: declared here
+  121 | void DES_encrypt1(DES_LONG *data, DES_key_schedule *ks, int enc);
+      |      ^~~~~~~~~~~~
+cscrypt/mdc2.c:640:17: warning: 'DES_set_odd_parity' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  640 |                 DES_set_odd_parity(&c->hh);
+      |                 ^~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:176:28: note: declared here
+  176 | OSSL_DEPRECATEDIN_3_0 void DES_set_odd_parity(DES_cblock *key);
+      |                            ^~~~~~~~~~~~~~~~~~
+cscrypt/mdc2.c:641:17: warning: 'DES_set_key_unchecked' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  641 |                 DES_set_key_unchecked(&c->hh, &k);
+      |                 ^~~~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:192:6: note: declared here
+  192 | void DES_set_key_unchecked(const_DES_cblock *key, DES_key_schedule *schedule);
+      |      ^~~~~~~~~~~~~~~~~~~~~
+cscrypt/mdc2.c:642:17: warning: 'DES_encrypt1' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  642 |                 DES_encrypt1(dd, &k, 1);
+      |                 ^~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/des.h:121:6: note: declared here
+  121 | void DES_encrypt1(DES_LONG *data, DES_key_schedule *ks, int enc);
+      |      ^~~~~~~~~~~~
+CC	csctapi/ifd_pcsc.c
+CC	csctapi/ifd_phoenix.c
+CC	csctapi/ifd_drecas.c
+CC	csctapi/ifd_sc8in1.c
+CC	csctapi/ifd_sci.c
+CC	csctapi/ifd_smargo.c
+CC	csctapi/ifd_smartreader.c
+CC	minilzo/minilzo.c
+CC	csctapi/ifd_stinger.c
+CC	module-cacheex.c
+CC	module-anticasc.c
+CC	module-cccam-cacheex.c
+CC	module-camd35.c
+CC	module-camd33.c
+CC	module-camd35-cacheex.c
+module-camd35.c: In function 'camd35_auth_client':
+module-camd35.c:146:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  146 |                 if(crc == crc32(0L, MD5((uint8_t *)account->usr, cs_strlen(account->usr), md5tmp), MD5_DIGEST_LENGTH))
+      |                 ^~
+In file included from cscrypt/md5.h:5,
+                 from module-camd35.c:6:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-camd35.c:153:33: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  153 |                                 if(!aes_set_key_alloc(&cl->aes_keys, (char *) MD5(cl->upwd, cs_strlen((char *)cl->upwd), md5tmp)))
+      |                                 ^~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-cccam.c
+module-camd35.c: In function 'camd35_client_init':
+module-camd35.c:867:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  867 |         i2b_buf(4, crc32(0L, MD5((uint8_t *)cl->reader->r_usr, cs_strlen(cl->reader->r_usr), md5tmp), 16), cl->ucrc);
+      |         ^~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-camd35.c:869:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  869 |         if(!aes_set_key_alloc(&cl->aes_keys, (char *)MD5(cl->upwd, cs_strlen((char *)cl->upwd), md5tmp)))
+      |         ^~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-cccshare.c
+module-cccam.c: In function 'cc_crypt_cmd0c':
+module-cccam.c:281:33: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  281 |                                 AES_decrypt((uint8_t *)buf + i * 16, (uint8_t *)out + i * 16, &cc->cmd0c_AES_key);
+      |                                 ^~~~~~~~~~~
+In file included from cscrypt/aes.h:2,
+                 from globals.h:123,
+                 from module-cccam.c:3:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+module-cccam.c: In function 'set_cmd0c_cryptkey':
+module-cccam.c:351:25: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  351 |                         AES_set_decrypt_key((uint8_t *)key_buf, 256, &cc->cmd0c_AES_key);
+      |                         ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+CC	module-constcw.c
+module-cccam.c: In function 'send_cmd05_answer':
+module-cccam.c:1229:41: warning: 'AES_set_encrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1229 |                                         AES_set_encrypt_key((uint8_t *) &aeskey, 128, &key);
+      |                                         ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:51:5: note: declared here
+   51 | int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+module-cccam.c:1234:49: warning: 'AES_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1234 |                                                 AES_encrypt((uint8_t *)data + i, (uint8_t *) &out + i, &key);
+      |                                                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:57:6: note: declared here
+   57 | void AES_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+module-cccam.c: In function 'cc_parse_msg':
+module-cccam.c:3753:25: warning: 'AES_set_encrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 3753 |                         AES_set_encrypt_key((uint8_t *)&aeskey, 128, &key);
+      |                         ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:51:5: note: declared here
+   51 | int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+module-cccam.c:3754:25: warning: 'AES_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 3754 |                         AES_encrypt((uint8_t *)data, (uint8_t *)&out, &key);
+      |                         ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:57:6: note: declared here
+   57 | void AES_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+module-cccam.c:3793:33: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 3793 |                                 MD5(data, 0x20, md5hash);
+      |                                 ^~~
+In file included from cscrypt/md5.h:5,
+                 from module-cccam.c:7:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-cccam.c: In function 'cc_srv_connect':
+module-cccam.c:4317:9: warning: 'SHA1_Init' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4317 |         SHA1_Init(&ctx);
+      |         ^~~~~~~~~
+In file included from cscrypt/sha1.h:2,
+                 from module-cccam.c:8:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int SHA1_Init(SHA_CTX *c);
+      |                           ^~~~~~~~~
+module-cccam.c:4318:9: warning: 'SHA1_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4318 |         SHA1_Update(&ctx, data, 16);
+      |         ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int SHA1_Update(SHA_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~~
+module-cccam.c:4319:9: warning: 'SHA1_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4319 |         SHA1_Final(buf, &ctx);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int SHA1_Final(unsigned char *md, SHA_CTX *c);
+      |                           ^~~~~~~~~~
+module-cccam.c: In function 'cc_cli_connect':
+module-cccam.c:4775:9: warning: 'SHA1_Init' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4775 |         SHA1_Init(&ctx);
+      |         ^~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:49:27: note: declared here
+   49 | OSSL_DEPRECATEDIN_3_0 int SHA1_Init(SHA_CTX *c);
+      |                           ^~~~~~~~~
+module-cccam.c:4776:9: warning: 'SHA1_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4776 |         SHA1_Update(&ctx, data, 16);
+      |         ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:50:27: note: declared here
+   50 | OSSL_DEPRECATEDIN_3_0 int SHA1_Update(SHA_CTX *c, const void *data, size_t len);
+      |                           ^~~~~~~~~~~
+module-cccam.c:4777:9: warning: 'SHA1_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4777 |         SHA1_Final(hash, &ctx);
+      |         ^~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sha.h:51:27: note: declared here
+   51 | OSSL_DEPRECATEDIN_3_0 int SHA1_Final(unsigned char *md, SHA_CTX *c);
+      |                           ^~~~~~~~~~
+CC	module-emulator.c
+CC	module-emulator-cryptoworks.c
+CC	module-emulator-nemu.c
+CC	module-emulator-director.c
+CC	module-emulator-biss.c
+CC	module-emulator-irdeto.c
+CC	module-emulator-nagravision.c
+module-emulator-nemu.c: In function 'down_softcam':
+module-emulator-nemu.c:137:26: warning: declaration of 'i' shadows a previous local [-Wshadow]
+  137 |                 uint32_t i;
+      |                          ^
+module-emulator-nemu.c:122:26: note: shadowed declaration is here
+  122 |         int32_t ret = 0, i, len = cs_strlen(get_tmp_dir()) + cs_strlen(rdr->label) + 2;
+      |                          ^
+CC	module-emulator-omnicrypt.c
+In function 'xxor',
+    inlined from 'xxor' at module-emulator-irdeto.c:11:20,
+    inlined from 'calculate_hash' at module-emulator-irdeto.c:136:4:
+module-emulator-irdeto.c:41:41: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
+   41 |                                 *data++ = *v1++ ^ *v2++;
+      |                                 ~~~~~~~~^~~~~~~~~~~~~~~
+module-emulator-irdeto.c: In function 'calculate_hash':
+module-emulator-irdeto.c:116:17: note: at offset 16 into destination object 'cbuff' of size 16
+  116 |         uint8_t cbuff[16];
+      |                 ^~~~~
+In function 'emu_add_entitlement',
+    inlined from 'refresh_entitlements' at module-emulator.c:185:3:
+module-emulator.c:94:17: warning: 'memcpy' forming offset 7 is out of the bounds [0, 7] [-Warray-bounds=]
+   94 |                 memcpy(item->name, keyName, 8);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+module-emulator-biss.c: In function 'parse_session_data':
+module-emulator-biss.c:669:9: warning: 'RSA_private_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  669 |         if (RSA_private_decrypt(256, data, session_data, key, RSA_PKCS1_OAEP_PADDING) > 0)
+      |         ^~
+In file included from module-emulator-biss.h:7,
+                 from module-emulator-biss.c:8:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/rsa.h:302:5: note: declared here
+  302 | int RSA_private_decrypt(int flen, const unsigned char *from, unsigned char *to,
+      |     ^~~~~~~~~~~~~~~~~~~
+module-emulator-biss.c: In function 'biss_read_pem':
+module-emulator-biss.c:827:17: warning: 'PEM_read_RSAPrivateKey' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  827 |                 if ((new_item->key = PEM_read_RSAPrivateKey(fp_pri, NULL, NULL, NULL)) == NULL)
+      |                 ^~
+In file included from module-emulator-biss.c:13:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/pem.h:452:1: note: declared here
+  452 | DECLARE_PEM_rw_cb_attr(OSSL_DEPRECATEDIN_3_0, RSAPrivateKey, RSA)
+      | ^~~~~~~~~~~~~~~~~~~~~~
+module-emulator-biss.c:852:17: warning: 'i2d_RSA_PUBKEY' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  852 |                 if ((length = i2d_RSA_PUBKEY(new_item->key, &der)) <= 0)
+      |                 ^~
+In file included from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/rsa.h:21:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/x509.h:730:1: note: declared here
+  730 | DECLARE_ASN1_ENCODE_FUNCTIONS_only_attr(OSSL_DEPRECATEDIN_3_0,RSA, RSA_PUBKEY)
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CC	module-emulator-powervu.c
+CC	module-emulator-viaccess.c
+CC	module-csp.c
+CC	module-cw-cycle-check.c
+CC	module-dvbapi.c
+CC	module-dvbapi-chancache.c
+CC	module-gbox-helper.c
+CC	module-gbox-sms.c
+module-dvbapi.c: In function 'request_cw':
+module-dvbapi.c:4154:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4154 |                 MD5(er->ecm, er->ecmlen, md5tmp);
+      |                 ^~~
+In file included from cscrypt/md5.h:5,
+                 from module-streamrelay.h:30,
+                 from module-dvbapi.c:16:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-gbox-cards.c
+CC	module-gbox-remm.c
+module-dvbapi.c: In function 'dvbapi_check_ecm_delayed_delivery':
+module-dvbapi.c:8974:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 8974 |                 MD5(er->ecm, er->ecmlen, md5tmp);
+      |                 ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-gbox.c
+CC	module-lcd.c
+CC	module-ird-guess.c
+CC	module-led.c
+CC	module-monitor.c
+CC	module-newcamd.c
+CC	module-newcamd-des.c
+module-monitor.c: In function 'secmon_auth_client':
+module-monitor.c:98:33: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   98 |                                 (crc == crc32(0L, MD5((uint8_t *)account->usr, cs_strlen(account->usr), md5tmp), MD5_DIGEST_LENGTH)))
+      |                                 ^
+In file included from cscrypt/md5.h:5,
+                 from module-monitor.c:5:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-monitor.c:101:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  101 |                         aes_set_key(&module_data->aes_keys, (char *)MD5((uint8_t *)ESTR(account->pwd), cs_strlen(ESTR(account->pwd)), md5tmp));
+      |                         ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-pandora.c
+CC	module-ghttp.c
+CC	module-radegast.c
+CC	module-scam.c
+CC	module-serial.c
+module-pandora.c: In function 'pandora_process_request':
+module-pandora.c:57:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |                         if(!memcmp(buf + 10, MD5(buf + 14 + CS_ECMSTORESIZE, ecmlen, md5tmp), CS_ECMSTORESIZE))
+      |                         ^~
+In file included from cscrypt/md5.h:5,
+                 from module-pandora.c:7:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-pandora.c: In function 'pandora_server':
+module-pandora.c:164:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  164 |                         memcpy(cl->pand_md5_key, MD5((uint8_t *)cfg.pand_pass, cs_strlen(cfg.pand_pass), md5tmp), 16);
+      |                         ^~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-pandora.c: In function 'pandora_client_init':
+module-pandora.c:233:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  233 |         memcpy(cl->pand_md5_key, MD5((uint8_t *)rdr->r_pwd, cs_strlen(rdr->r_pwd), md5tmp), 16);
+      |         ^~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-pandora.c: In function 'pandora_send_ecm':
+module-pandora.c:274:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  274 |         memcpy(&msgbuf[10], MD5(er->ecm, er->ecmlen, md5tmp), CS_ECMSTORESIZE);
+      |         ^~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-streamrelay.c
+CC	module-stat.c
+CC	module-webif-lib.c
+module-streamrelay.c: In function 'radegast_client_ecm':
+module-streamrelay.c:127:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  127 |         MD5(cdata->ecm_data, section_length, md5tmp);
+      |         ^~~
+In file included from cscrypt/md5.h:5,
+                 from module-streamrelay.h:30,
+                 from module-streamrelay.c:7:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-webif-tpl.c
+module-stat.c: In function 'convert_to_beta_int':
+module-stat.c:800:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  800 |         memcpy(er->ecmd5, MD5(er->ecm + 13, er->ecmlen - 13, md5tmp), CS_ECMSTORESIZE);
+      |         ^~~~~~
+In file included from cscrypt/md5.h:5,
+                 from module-stat.c:6:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-stat.c: In function 'convert_to_nagra_int':
+module-stat.c:810:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  810 |         memcpy(er->ecmd5, MD5(er->ecm + 3, er->ecmlen - 3, md5tmp), CS_ECMSTORESIZE);
+      |         ^~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	webif/pages.c
+module-webif-lib.c: In function 'calculate_opaque':
+module-webif-lib.c:123:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  123 |         char_to_hex(MD5((uint8_t *)noncetmp, cs_strlen(noncetmp), md5tmp), MD5_DIGEST_LENGTH, (uint8_t *)opaque);
+      |         ^~~~~~~~~~~
+In file included from cscrypt/md5.h:5,
+                 from module-webif-lib.c:6:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-webif-lib.c: In function 'calculate_nonce':
+module-webif-lib.c:189:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  189 |                 char_to_hex(MD5((uint8_t *)noncetmp, cs_strlen(noncetmp), md5tmp), MD5_DIGEST_LENGTH, (uint8_t *)result);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-webif-lib.c: In function 'check_auth':
+module-webif-lib.c:277:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  277 |                 char_to_hex(MD5((uint8_t *)A1tmp, cs_strlen(A1tmp), md5tmp), MD5_DIGEST_LENGTH, (uint8_t *)A1);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-webif-lib.c:281:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  281 |                 char_to_hex(MD5((uint8_t *)A2tmp, cs_strlen(A2tmp), md5tmp), MD5_DIGEST_LENGTH, (uint8_t *)A2);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-webif-lib.c:285:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  285 |                 char_to_hex(MD5((uint8_t *)A3tmp, cs_strlen(A3tmp), md5tmp), MD5_DIGEST_LENGTH, (uint8_t *)A3);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	module-webif.c
+CC	reader-common.c
+CC	reader-bulcrypt.c
+CC	reader-conax.c
+CC	reader-cryptoworks.c
+module-webif.c: In function 'send_ncam_reader':
+module-webif.c:2038:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 2038 |                         MD5((uint8_t *)rdr->label, cs_strlen(rdr->label), md5tmp);
+      |                         ^~~
+In file included from cscrypt/md5.h:5,
+                 from module-webif.c:10:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+module-webif.c: In function 'send_ncam_user_config':
+module-webif.c:4906:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 4906 |                 MD5((uint8_t *)account->usr, cs_strlen(account->usr), md5tmp);
+      |                 ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	reader-dgcrypt.c
+CC	reader-dre.c
+CC	reader-dre-cas.c
+CC	reader-dre-common.c
+CC	reader-dre-st20.c
+CC	reader-griffin.c
+CC	reader-irdeto.c
+CC	reader-nagra.c
+CC	reader-nagra-common.c
+CC	reader-nagracak7.c
+CC	reader-seca.c
+CC	reader-tongfang.c
+CC	reader-streamguard.c
+CC	reader-jet.c
+reader-streamguard.c: In function 'decrypt_cw_ex':
+reader-streamguard.c:60:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   60 |         MD5(keybuf, 22, md5tmp);
+      |         ^~~
+In file included from cscrypt/md5.h:5,
+                 from reader-streamguard.c:5:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+reader-streamguard.c:66:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   66 |         MD5(md5tmp, 20, md5key);
+      |         ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+reader-streamguard.c: In function 'streamguard_card_init':
+reader-streamguard.c:203:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  203 |                 MD5(seed, sizeof(seed), md5_key);
+      |                 ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	reader-viaccess.c
+CC	reader-videoguard-common.c
+CC	reader-videoguard1.c
+CC	reader-videoguard12.c
+CC	reader-videoguard2.c
+reader-videoguard-common.c: In function 'cAES_SetKey':
+reader-videoguard-common.c:419:9: warning: 'AES_set_encrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  419 |         AES_set_encrypt_key(key, 128, &(csystem_data->ekey));
+      |         ^~~~~~~~~~~~~~~~~~~
+In file included from cscrypt/aes.h:2,
+                 from globals.h:123,
+                 from reader-videoguard-common.c:5:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:51:5: note: declared here
+   51 | int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+reader-videoguard-common.c: In function 'cAES_Encrypt':
+reader-videoguard-common.c:427:9: warning: 'AES_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  427 |         for(i = 0; i < len; i += 16) { AES_encrypt(data + i, crypted + i, &(csystem_data->ekey)); }
+      |         ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:57:6: note: declared here
+   57 | void AES_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+CC	ncam-aes.c
+CC	ncam-hashtable.c
+CC	ncam-array.c
+CC	ncam-signing.c
+reader-videoguard2.c: In function 'do_post_dw_hash':
+reader-videoguard2.c:231:41: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  231 |                                         MD5(buffer, 8 + (ecm_header_data[ecmi] & 0x7D), md5tmp);
+      |                                         ^~~
+In file included from cscrypt/md5.h:5,
+                 from reader-videoguard2.c:3:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+reader-videoguard2.c: In function 'videoguard2_card_init':
+ncam-aes.c: In function 'aes_set_key':
+reader-videoguard2.c:1177:9: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1177 |         AES_set_decrypt_key(dimeno_magic, 128, &(csystem_data->astrokey));
+      |         ^~~~~~~~~~~~~~~~~~~
+In file included from cscrypt/aes.h:2,
+                 from globals.h:123,
+                 from reader-videoguard2.c:1:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+ncam-aes.c:10:9: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   10 |         AES_set_decrypt_key((const uint8_t *)key, 128, &aes->aeskey_decrypt);
+      |         ^~~~~~~~~~~~~~~~~~~
+In file included from cscrypt/aes.h:2,
+                 from globals.h:123,
+                 from ncam-aes.c:3:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+ncam-aes.c:11:9: warning: 'AES_set_encrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   11 |         AES_set_encrypt_key((const uint8_t *)key, 128, &aes->aeskey_encrypt);
+      |         ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:51:5: note: declared here
+   51 | int AES_set_encrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+ncam-aes.c: In function 'aes_decrypt':
+ncam-aes.c:29:17: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   29 |                 AES_decrypt(buf + i, buf + i, &aes->aeskey_decrypt);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+ncam-aes.c: In function 'aes_encrypt_idx':
+ncam-aes.c:38:17: warning: 'AES_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   38 |                 AES_encrypt(buf + i, buf + i, &aes->aeskey_encrypt);
+      |                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:57:6: note: declared here
+   57 | void AES_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+ncam-aes.c: In function 'aes_cbc_encrypt':
+ncam-aes.c:44:9: warning: 'AES_cbc_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   44 |         AES_cbc_encrypt(buf, buf, n, &aes->aeskey_encrypt, iv, AES_ENCRYPT);
+      |         ^~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:66:6: note: declared here
+   66 | void AES_cbc_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~~~~~
+ncam-aes.c: In function 'aes_cbc_decrypt':
+ncam-aes.c:49:9: warning: 'AES_cbc_encrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   49 |         AES_cbc_encrypt(buf, buf, n, &aes->aeskey_decrypt, iv, AES_DECRYPT);
+      |         ^~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:66:6: note: declared here
+   66 | void AES_cbc_encrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~~~~~
+ncam-aes.c: In function 'add_aes_entry':
+ncam-aes.c:67:17: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   67 |                 AES_set_decrypt_key((const uint8_t *)aesKey, 128, &(new_entry->key));
+      |                 ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+reader-videoguard2.c: In function 'videoguard2_do_ecm':
+ncam-aes.c: In function 'aes_decrypt_from_list':
+ncam-aes.c:227:17: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  227 |                 { AES_decrypt(buf + i, buf + i, &(current->key)); }
+      |                 ^
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+reader-videoguard2.c:1392:65: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1392 |                                                                 AES_set_decrypt_key(keybuf, 128, &aeskey);
+      |                                                                 ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+reader-videoguard2.c:1393:65: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1393 |                                                                 AES_decrypt(aesbuf, aesbuf, &aeskey);
+      |                                                                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+reader-videoguard2.c:1449:65: warning: 'AES_set_decrypt_key' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1449 |                                                                 AES_set_decrypt_key(keybuf, 128, &aeskey);
+      |                                                                 ^~~~~~~~~~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:54:5: note: declared here
+   54 | int AES_set_decrypt_key(const unsigned char *userKey, const int bits,
+      |     ^~~~~~~~~~~~~~~~~~~
+reader-videoguard2.c:1450:65: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1450 |                                                                 AES_decrypt(aesbuf, aesbuf, &aeskey);
+      |                                                                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+reader-videoguard2.c:1515:33: warning: 'AES_decrypt' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 1515 |                                 AES_decrypt(aesbuf, aesbuf, &(csystem_data->astrokey));
+      |                                 ^~~~~~~~~~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/aes.h:60:6: note: declared here
+   60 | void AES_decrypt(const unsigned char *in, unsigned char *out,
+      |      ^~~~~~~~~~~
+CC	ncam-cache.c
+CC	ncam-client.c
+CC	ncam-chk.c
+ncam-client.c: In function 'cs_auth_client':
+ncam-client.c:466:41: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  466 |                                         client->pcrc = crc32(0L, MD5((uint8_t *)(ESTR(account->pwd)), cs_strlen(ESTR(account->pwd)), md5tmp), MD5_DIGEST_LENGTH);
+      |                                         ^~~~~~
+In file included from cscrypt/md5.h:5,
+                 from ncam-client.c:5:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+ncam-client.c: In function 'cs_reinit_clients':
+ncam-client.c:627:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  627 |                         if(account && !account->disabled && cl->pcrc == crc32(0L, MD5((uint8_t *)ESTR(account->pwd), cs_strlen(ESTR(account->pwd)), md5tmp), MD5_DIGEST_LENGTH))
+      |                         ^~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	ncam-conf.c
+CC	ncam-conf-chk.c
+CC	ncam-conf-mk.c
+CC	ncam-config-global.c
+CC	ncam-config-account.c
+CC	ncam-config-reader.c
+CC	ncam-config.c
+CC	ncam-ecm.c
+CC	ncam-emm.c
+CC	ncam-emm-cache.c
+ncam-ecm.c: In function 'get_cw':
+ncam-ecm.c:2790:9: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+ 2790 |         memcpy(er->ecmd5, MD5(er->ecm + offset, er->ecmlen - offset, md5tmp), CS_ECMSTORESIZE);
+      |         ^~~~~~
+In file included from cscrypt/md5.h:5,
+                 from ncam-ecm.c:4:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	ncam-failban.c
+ncam-emm.c: In function 'do_emm':
+ncam-emm.c:629:25: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  629 |                         MD5(ep->emm, SCT_LEN(ep->emm), md5tmp);
+      |                         ^~~
+In file included from cscrypt/md5.h:5,
+                 from ncam-emm.c:4:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+ncam-emm.c: In function 'reader_do_emm':
+ncam-emm.c:697:17: warning: 'MD5' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+  697 |                 MD5(ep->emm, SCT_LEN(ep->emm), md5tmp);
+      |                 ^~~
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/md5.h:52:38: note: declared here
+   52 | OSSL_DEPRECATEDIN_3_0 unsigned char *MD5(const unsigned char *d, size_t n,
+      |                                      ^~~
+CC	ncam-files.c
+CC	ncam-garbage.c
+CC	ncam-lock.c
+CC	ncam-log.c
+CC	ncam-net.c
+CC	ncam-log-reader.c
+CC	ncam-llist.c
+CC	ncam-string.c
+CC	ncam-reader.c
+CC	ncam-simples.c
+CC	ncam-time.c
+CC	ncam-work.c
+CONF	build/armv7a-vuplus4k-linux-gnueabihf-ssl-libcurl-libusb-pcsc-libdvbcsa/config.c
+BUILD	Distribution/list_smargo-_bonecrew_r1.1.6_2024_12_11863_-git8e4a653-armv7a-vuplus4k-linux-gnueabihf-ssl-libcurl-libusb-pcsc-libdvbcsa
+CC	ncam.c
+ncam.c: In function 'ssl_init':
+ncam.c:57:9: warning: 'ERR_load_BIO_strings' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   57 |         ERR_load_BIO_strings();
+      |         ^~~~~~~~~~~~~~~~~~~~
+In file included from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/cryptoerr.h:17,
+                 from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/crypto.h:38,
+                 from ncam.c:50:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/cryptoerr_legacy.h:31:27: note: declared here
+   31 | OSSL_DEPRECATEDIN_3_0 int ERR_load_BIO_strings(void);
+      |                           ^~~~~~~~~~~~~~~~~~~~
+ncam.c:58:9: warning: 'ERR_load_SSL_strings' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]
+   58 |         ERR_load_SSL_strings();
+      |         ^~~~~~~~~~~~~~~~~~~~
+In file included from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sslerr.h:17,
+                 from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/ssl.h:44,
+                 from ncam.c:51:
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/openssl/sslerr_legacy.h:29:27: note: declared here
+   29 | OSSL_DEPRECATEDIN_3_0 int ERR_load_SSL_strings(void);
+      |                           ^~~~~~~~~~~~~~~~~~~~
+LINK	/opt/s3_ncam_bonecrew_test/support/binaries/ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed.debug
+SIGN	SHA256(64): 83e52ddfa0bf13f20422a747ca8da52d6fcd24f5d7b1647ff74f4d7da96c6d5e -> Verified OK <- DIGEST(72)
+STRIP	/opt/s3_ncam_bonecrew_test/support/binaries/ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed
+SIGN	SHA256(64): 93d143ea86603921a0ad7238d5f181723dadda9e8e8224560d8ea09d3d3666a3 -> Verified OK <- DIGEST(71)
+
+ |  TIME  >	[  0 min(s) 16 secs ]
+
+ lösche ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed.debug
+
+ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed.tar.gz
+created
+
+ncam-git_bonecrew_r1.1.6_2024_12_11863_@8e4a6537-vuplus4k_armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-static-signed.tar.gz
+nach
+/opt/s3_ncam_bonecrew_test/archive

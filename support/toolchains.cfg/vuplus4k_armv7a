@@ -1,0 +1,22 @@
+_toolchainname="vuplus4k_armv7a";
+default_use="USE_LIBCRYPTO";
+extra_use="";
+extra_cc="";
+extra_ld="";
+extra_c="";
+_description="Vu+ Zero|Uno|Duo|Solo|Ultimo 4K";
+_ncamconfdir_default="/etc/tuxbox/config";
+_ncamconfdir_custom="/etc/tuxbox/config/ncambone"
+_self_build="no";
+_compiler="armv7a-vuplus4k-linux-gnueabihf-";
+_sysroot="armv7a-vuplus4k-linux-gnueabihf/sysroot";
+_libsearchdir="/usr/lib";
+_extract_strip="0";
+_toolchainfilename="aHR0cHM6Ly9zaW1wbGVidWlsZC5kZWR5bi5pby90b29sY2hhaW5zLyR7cHZlcnNpb259L1Rvb2xjaGFpbi12dXBsdXM0a19hcm12N2EudGFyLnh6Cg==";
+_md5sum="1c35bebd012730714ddb7a069f5a870c  Toolchain-vuplus4k_armv7a.tar.xz";
+_tc_info="\n
+!!! crosstool-NG Toolchain !!!\n
+\n
+Vu+ Zero|Uno|Duo|Solo|Ultimo 4K\n
+arm armv7-a 32-bit LE, glibc 2.25, gcc 13.2.0, linux 6.6.1\n";
+_tc_infolines="5";

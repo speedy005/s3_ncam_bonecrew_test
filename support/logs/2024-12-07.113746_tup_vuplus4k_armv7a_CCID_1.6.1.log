@@ -1,0 +1,363 @@
+Plugin s3.TUP v0.26.2 - Aktualisierung Bibliothek Log - 2024-12-07 11:37:47
+================================================================================
+Befehlszeilen zum Erstellen von (1/1) vuplus4k_armv7a: Bibliothek CCID 1.6.1:
+================================================================================
+cd /tmp/lib_source/2024-12-07.113746/ccid-1.6.1/;
+export TOOLCHAIN=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a;
+export PATH="$TOOLCHAIN/bin:$PATH";
+[ -n "" ] && export CFLAGS="";
+export CC=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc;
+export PKG_CONFIG_PATH="$(find /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr -name "pkgconfig" -type d)";
+LIBUSB_LIBS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --libs libusb-1.0)";
+LIBUSB_CFLAGS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --cflags libusb-1.0)";
+PCSC_LIBS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --libs libpcsclite)";
+PCSC_CFLAGS="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN --cflags libpcsclite)";
+[ "ct-ng" == "android-ndk" ] && export ANDROID_NDK="/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a";
+[ "ct-ng" == "android-ndk" ] && export LDFLAGS="-Wl,--exclude-libs=libclang_rt.builtins-arm-android.a";
+[ "ct-ng" == "android-ndk" ] && LIBUSB_LIBS="-L/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf/ -lusb-1.0";
+FLAGS="--enable-static";
+./bootstrap && ./configure --prefix=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr --host=armv7a-vuplus4k-linux-gnueabihf $FLAGS --enable-twinserial --enable-usbdropdir="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN libpcsclite --variable=usbdropdir)" --enable-serialconfdir="$(PKG_CONFIG_LIBDIR=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig $PKG_CONFIG_BIN libpcsclite --variable=serialconfdir)" PCSC_LIBS="${PCSC_LIBS}" PCSC_CFLAGS="${PCSC_CFLAGS}" LIBUSB_LIBS="${LIBUSB_LIBS}" LIBUSB_CFLAGS="${LIBUSB_CFLAGS}";
+make -j12;
+make install;
+[ $? -eq 0 ] && mkdir -p "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig" && echo -e "prefix=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr
+exec_prefix=\${prefix}
+libdir=\${exec_prefix}/lib
+includedir=\${prefix}/include/PCSC
+usbdropdir=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers
+serialconfdir=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d
+
+Name: CCID IFD Handler
+Description: Generic USB CCID (Chip/Smart Card Interface Devices) and ICCD (Integrated Circuit(s) Card Devices) driver
+Version: $LIB_CCID_version
+Requires: libusb libpcsclite" > "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig/libccid.pc";
+[ "ct-ng" == "android-ndk" ] && zip -j "$bdir/armv7a-vuplus4k-linux-gnueabihf-libccid.zip" -xi "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Linux/libccid.so";
+[ "ct-ng" == "android-ndk" ] && zip -j "$bdir/armv7a-vuplus4k-linux-gnueabihf-libccidtwin.zip" -xi "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/serial/libccidtwin.so";
+[ "ct-ng" == "android-ndk" ] && zip -j "$bdir/armv7a-vuplus4k-linux-gnueabihf-libccidplist.zip" -xi "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Info.plist";
+mkdir "${LIB_CCID_name}-${LIB_CCID_version}" && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/" -type f -exec cp -af "{}" "${LIB_CCID_name}-${LIB_CCID_version}" \; && zip -9yr "$bdir/${TOOLCHAIN##*/}-libs.zip" "${LIB_CCID_name}-${LIB_CCID_version}";
+================================================================================
++ LIBTOOLIZE=libtoolize
++ which glibtoolize
++ aclocal -I m4
+aclocal: warning: couldn't open directory 'm4': No such file or directory
++ libtoolize --copy --force --automake
++ autoheader --force
++ autoconf --force
++ automake --add-missing --copy --force --foreign
+configure.ac:40: installing './ar-lib'
+configure.ac:29: installing './compile'
+configure.ac:20: installing './config.guess'
+configure.ac:20: installing './config.sub'
+configure.ac:10: installing './install-sh'
+configure.ac:10: installing './missing'
+contrib/Kobil_mIDentity_switch/Makefile.am: installing './depcomp'
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-strip... armv7a-vuplus4k-linux-gnueabihf-strip
+checking for a race-free mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking build system type... x86_64-pc-linux-gnu
+checking host system type... armv7a-vuplus4k-linux-gnueabihf
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for armv7a-vuplus4k-linux-gnueabihf-gcc... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... yes
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc accepts -g... yes
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc option to enable C11 features... none needed
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc... gcc3
+checking how to run the C preprocessor... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -E
+checking whether make sets $(MAKE)... (cached) yes
+checking whether ln -s works... yes
+checking for flex... flex
+checking for lex output file root... lex.yy
+checking for lex library... none needed
+checking whether yytext is a pointer... yes
+checking for armv7a-vuplus4k-linux-gnueabihf-ar... armv7a-vuplus4k-linux-gnueabihf-ar
+checking the archiver (armv7a-vuplus4k-linux-gnueabihf-ar) interface... ar
+checking for armv7a-vuplus4k-linux-gnueabihf-pkg-config... no
+checking for pkg-config... /usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for libpcsclite >= 1.8.3... yes
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for ifdhandler.h... yes
+checking for reader.h... yes
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld
+checking if the linker (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B
+checking the name lister (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking how to convert x86_64-pc-linux-gnu file names to armv7a-vuplus4k-linux-gnueabihf format... func_convert_file_noop
+checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld option to reload object files... -r
+checking for armv7a-vuplus4k-linux-gnueabihf-objdump... armv7a-vuplus4k-linux-gnueabihf-objdump
+checking how to recognize dependent libraries... pass_all
+checking for armv7a-vuplus4k-linux-gnueabihf-dlltool... no
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for armv7a-vuplus4k-linux-gnueabihf-ar... (cached) armv7a-vuplus4k-linux-gnueabihf-ar
+checking for archiver @FILE support... @
+checking for armv7a-vuplus4k-linux-gnueabihf-strip... (cached) armv7a-vuplus4k-linux-gnueabihf-strip
+checking for armv7a-vuplus4k-linux-gnueabihf-ranlib... armv7a-vuplus4k-linux-gnueabihf-ranlib
+checking command to parse /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-nm -B output from /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for armv7a-vuplus4k-linux-gnueabihf-mt... no
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+checking for /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc static flag -static works... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -c -o file.o... yes
+checking if /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+checking whether the /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc linker (/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+checking for errno.h... yes
+checking for fcntl.h... yes
+checking for stdlib.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for termios.h... yes
+checking for string.h... (cached) yes
+checking for sys/time.h... yes
+checking for sys/types.h... (cached) yes
+checking for stdarg.h... yes
+checking for arpa/inet.h... yes
+checking for stdio.h... (cached) yes
+checking for an ANSI C-conforming const... yes
+checking for size_t... yes
+checking for select... yes
+checking for strerror... yes
+checking for strncpy... yes
+checking for memcpy... yes
+checking for strlcpy... no
+checking for strlcat... no
+checking for secure_getenv... yes
+checking for pthread_condattr_setclock... no
+checking for zlib... yes
+checking for libusb-1.0 >= 1.0.9... yes
+checking for libusb.h... yes
+checking for libusb_init... yes
+checking for -fvisibility=hidden... yes
+checking whether /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc is Clang... no
+checking whether pthreads work with "-pthread" and "-lpthread"... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking whether more special flags are required for pthreads... no
+checking for PTHREAD_PRIO_INHERIT... yes
+checking for SCardEstablishContext... yes
+
+libccid has been configured with following options:
+
+Version:             1.5.5
+Host:                armv7a-vuplus4k-linux-gnueabihf
+Compiler:            /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc
+Preprocessor flags:  
+Compiler flags:      -g -O2
+Preprocessor flags:  
+Linker flags:        
+Libraries:           
+
+PCSC_CFLAGS:         -pthread -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/PCSC
+PCSC_LIBS:           -L/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib -lpcsclite
+PTHREAD_CFLAGS:      -pthread
+PTHREAD_LIBS:        -lpthread
+BUNDLE_HOST:         Linux
+DYN_LIB_EXT:         so
+LIBUSB_CFLAGS:       -I/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/libusb-1.0
+LIBUSB_LIBS:         -L/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib -lusb-1.0
+SYMBOL_VISIBILITY:   -fvisibility=hidden
+NOCLASS:             
+
+libusb support:          yes
+composite as multislot:  no
+multi threading:         yes
+bundle directory name:   ifd-ccid.bundle
+USB drop directory:      /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers
+serial Twin support:     yes
+serial twin install dir: /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/serial
+serial config directory: /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d
+compiled for pcsc-lite:  yes
+syslog debug:            no
+os_log debug:            no
+class driver:            yes
+
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating readers/Makefile
+config.status: creating contrib/Makefile
+config.status: creating contrib/Kobil_mIDentity_switch/Makefile
+config.status: creating contrib/RSA_SecurID/Makefile
+config.status: creating examples/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+make  all-recursive
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird betreten
+Making all in readers
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird betreten
+make[2]: Für das Ziel „all“ ist nichts zu tun.
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird verlassen
+Making all in examples
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird betreten
+  CC       scardcontrol-scardcontrol.o
+  CC       scardcontrol-PCSCv2part10.o
+  CCLD     scardcontrol
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird verlassen
+Making all in contrib
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird betreten
+Making all in Kobil_mIDentity_switch
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird betreten
+  CC       Kobil_mIDentity_switch-Kobil_mIDentity_switch.o
+  CCLD     Kobil_mIDentity_switch
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird verlassen
+Making all in RSA_SecurID
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird betreten
+  CC       RSA_SecurID_getpasswd-RSA_SecurID_getpasswd.o
+  CCLD     RSA_SecurID_getpasswd
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird verlassen
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird betreten
+make[3]: Für das Ziel „all-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird verlassen
+Making all in src
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/src“ wird betreten
+  CC       parse-parse.o
+  CC       parse-debug.o
+  CC       parse-ccid_usb.o
+  CC       parse-sys_unix.o
+  LEX      tokenparser.c
+  CC       parse-strlcpy.o
+  CC       parse-simclist.o
+  CC       libccid_la-ccid.lo
+  CC       libccid_la-commands.lo
+  CC       libccid_la-ifdhandler.lo
+  CC       libccid_la-sys_unix.lo
+  CC       libccid_la-utils.lo
+parse.c:28:10: fatal error: zlib.h: No such file or directory
+   28 | #include <zlib.h>
+      |          ^~~~~~~~
+compilation terminated.
+make[2]: *** [Makefile:941: parse-parse.o] Fehler 1
+make[2]: *** Auf noch nicht beendete Prozesse wird gewartet …
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/src“ wird verlassen
+make[1]: *** [Makefile:440: all-recursive] Fehler 1
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird verlassen
+make: *** [Makefile:372: all] Fehler 2
+Making install in readers
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird betreten
+make[2]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[2]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/readers“ wird verlassen
+Making install in examples
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird betreten
+make[2]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[2]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/examples“ wird verlassen
+Making install in contrib
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird betreten
+Making install in Kobil_mIDentity_switch
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird betreten
+make[3]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[3]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/Kobil_mIDentity_switch“ wird verlassen
+Making install in RSA_SecurID
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird betreten
+make[3]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[3]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib/RSA_SecurID“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird betreten
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird betreten
+make[3]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[3]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[3]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird verlassen
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/contrib“ wird verlassen
+Making install in src
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/src“ wird betreten
+  CC       libccid_la-ccid_usb.lo
+  CC       libccid_la-tokenparser.lo
+  CC       libccid_la-strlcpy.lo
+  CC       libccid_la-simclist.lo
+  CC       towitoko/libccid_la-atr.lo
+  CC       towitoko/libccid_la-pps.lo
+  CC       openct/libccid_la-buffer.lo
+  CC       openct/libccid_la-checksum.lo
+  CC       openct/libccid_la-proto-t1.lo
+  CCLD     libccid.la
+./create_Info_plist.pl ./../readers/supported_readers.txt ./Info.plist.src --target=libccid.so --version=1.5.5  > Info.plist
+/bin/bash /tmp/lib_source/2024-12-07.113746/ccid-1.6.1/install-sh -d "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Linux/"
+cp Info.plist "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/"
+cp .libs/libccid.so "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/ifd-ccid.bundle/Contents/Linux/libccid.so"
+***************
+copy the src/92_pcscd_ccid.rules file in udev directory (/etc/udev/rules.d/)
+***************
+  CC       libccidtwin_la-ccid.lo
+  CC       libccidtwin_la-commands.lo
+  CC       libccidtwin_la-ifdhandler.lo
+  CC       libccidtwin_la-sys_unix.lo
+  CC       libccidtwin_la-utils.lo
+  CC       libccidtwin_la-ccid_serial.lo
+  CC       libccidtwin_la-tokenparser.lo
+  CC       libccidtwin_la-strlcpy.lo
+  CC       libccidtwin_la-simclist.lo
+  CC       towitoko/libccidtwin_la-atr.lo
+  CC       towitoko/libccidtwin_la-pps.lo
+  CC       openct/libccidtwin_la-buffer.lo
+  CC       openct/libccidtwin_la-checksum.lo
+  CC       openct/libccidtwin_la-proto-t1.lo
+  CCLD     libccidtwin.la
+/bin/bash /tmp/lib_source/2024-12-07.113746/ccid-1.6.1/install-sh -d "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/serial"
+cp .libs/libccidtwin.so "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/serial/libccidtwin.so"
+/bin/bash /tmp/lib_source/2024-12-07.113746/ccid-1.6.1/install-sh -d "//opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d" ; \
+	perl -ne "s|@TARGET@|/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pcsc/drivers/serial/libccidtwin.so| ; print" ./reader.conf.in > "//opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/etc/reader.conf.d/libccidtwin"
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1/src“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird betreten
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird betreten
+make[2]: Für das Ziel „install-exec-am“ ist nichts zu tun.
+make[2]: Für das Ziel „install-data-am“ ist nichts zu tun.
+make[2]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird verlassen
+make[1]: Verzeichnis „/tmp/lib_source/2024-12-07.113746/ccid-1.6.1“ wird verlassen
+  adding: CCID-1.6.1/ (stored 0%)
+  adding: CCID-1.6.1/Info.plist (deflated 84%)
+  adding: CCID-1.6.1/libccidtwin.so (deflated 53%)
+  adding: CCID-1.6.1/libccid.so (deflated 53%)

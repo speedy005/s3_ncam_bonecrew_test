@@ -1,0 +1,93 @@
+Plugin s3.TUP v0.26.2 - Aktualisierung Bibliothek Log - 2025-05-07 17:52:59
+================================================================================
+Befehlszeilen zum Erstellen von (2/7) vuplus4k_armv7a: Bibliothek zlib 1.3.1:
+================================================================================
+cd /tmp/lib_source/2025-05-07.175107/zlib-1.3.1/;
+export TOOLCHAIN=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a;
+export PATH="$TOOLCHAIN/bin:$PATH";
+[ -n "" ] && export CFLAGS="" || export CFLAGS="-fPIC";
+export CC=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc;
+[ "ct-ng" == "android-ndk" ] && export ANDROID_NDK="/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a";
+[ "ct-ng" == "android-ndk" ] && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//" -maxdepth 1 -name "crt*.o" -execdir ln -frs "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//{}" "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf/{}" \;;
+./configure --prefix=/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr;
+make -j12;
+make install;
+[ "ct-ng" == "android-ndk" ] && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/" -maxdepth 1 -name "libz.*" -execdir ln -frs "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/{}" "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//{}" \; || true;
+[ "ct-ng" == "android-ndk" ] && [ ! -f "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libz.so" ] && mv "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//libz.so" "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/armv7a-vuplus4k-linux-gnueabihf//libz.so.to_old" || true;
+mkdir "${LIB_ZLIB_name}-${LIB_ZLIB_version}" && find "/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr" -maxdepth 2 -name "libz.so*" -exec cp -af "{}" "${LIB_ZLIB_name}-${LIB_ZLIB_version}" \; && zip -9yr "$bdir/${TOOLCHAIN##*/}-libs.zip" "${LIB_ZLIB_name}-${LIB_ZLIB_version}";
+================================================================================
+Checking for shared library support...
+Building shared library libz.so.1.3.1 with /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc.
+Checking for size_t... Yes.
+Checking for off64_t... Yes.
+Checking for fseeko... Yes.
+Checking for strerror... Yes.
+Checking for unistd.h... Yes.
+Checking for stdarg.h... Yes.
+Checking whether to use vs[n]printf() or s[n]printf()... using vs[n]printf().
+Checking for vsnprintf() in stdio.h... Yes.
+Checking for return value of vsnprintf()... Yes.
+Checking for attribute(visibility) support... Yes.
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -I. -c -o example.o test/example.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o adler32.o adler32.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o crc32.o crc32.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o deflate.o deflate.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o infback.o infback.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o inffast.o inffast.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o inflate.o inflate.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o inftrees.o inftrees.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o trees.o trees.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o zutil.o zutil.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o compress.o compress.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o uncompr.o uncompr.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o gzclose.o gzclose.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o gzlib.o gzlib.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o gzread.o gzread.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -c -o gzwrite.o gzwrite.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -I. -c -o minigzip.o test/minigzip.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/adler32.o adler32.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/crc32.o crc32.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/deflate.o deflate.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/infback.o infback.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/inffast.o inffast.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/inflate.o inflate.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/inftrees.o inftrees.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/trees.o trees.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/zutil.o zutil.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/compress.o compress.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/uncompr.o uncompr.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/gzclose.o gzclose.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/gzlib.o gzlib.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/gzread.o gzread.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -DPIC -c -o objs/gzwrite.o gzwrite.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -I. -D_FILE_OFFSET_BITS=64 -c -o example64.o test/example.c
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -I. -D_FILE_OFFSET_BITS=64 -c -o minigzip64.o test/minigzip.c
+ar rc libz.a adler32.o crc32.o deflate.o infback.o inffast.o inflate.o inftrees.o trees.o zutil.o compress.o uncompr.o gzclose.o gzlib.o gzread.o gzwrite.o 
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -o example example.o -L. libz.a
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -o minigzip minigzip.o -L. libz.a
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -o minigzip64 minigzip64.o -L. libz.a
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN  -o example64 example64.o -L. libz.a
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -shared -Wl,-soname,libz.so.1,--version-script,zlib.map -fPIC -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -o libz.so.1.3.1 adler32.lo crc32.lo deflate.lo infback.lo inffast.lo inflate.lo inftrees.lo trees.lo zutil.lo compress.lo uncompr.lo gzclose.lo gzlib.lo gzread.lo gzwrite.lo  -lc 
+rm -f libz.so libz.so.1
+ln -s libz.so.1.3.1 libz.so
+ln -s libz.so.1.3.1 libz.so.1
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -o examplesh example.o  -L. libz.so.1.3.1
+/opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/bin/armv7a-vuplus4k-linux-gnueabihf-gcc -fPIC -D_LARGEFILE64_SOURCE=1 -DHAVE_HIDDEN -o minigzipsh minigzip.o  -L. libz.so.1.3.1
+rm -f /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libz.a
+cp libz.a /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libz.a
+cp libz.so.1.3.1 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib
+chmod 755 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/libz.so.1.3.1
+rm -f /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man3/zlib.3
+cp zlib.3 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man3
+chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/share/man/man3/zlib.3
+rm -f /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig/zlib.pc
+cp zlib.pc /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig
+chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/lib/pkgconfig/zlib.pc
+rm -f /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/zlib.h /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/zconf.h
+cp zlib.h zconf.h /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include
+chmod 644 /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/zlib.h /opt/s3_ncam_bonecrew_test/support/toolchains/vuplus4k_armv7a/armv7a-vuplus4k-linux-gnueabihf/sysroot/usr/include/zconf.h
+updating: zlib-1.3.1/ (stored 0%)
+updating: zlib-1.3.1/libz.so.1 (stored 0%)
+updating: zlib-1.3.1/libz.so (stored 0%)
+updating: zlib-1.3.1/libz.so.1.3.1 (deflated 66%)

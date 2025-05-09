@@ -1,0 +1,108 @@
++-------------------------------------------------------------------------------
+| NCam ver: _bonecrew_r1.2.1_2025_01_11865_ rev: git389a698 target: x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa
+| Tools:
+|  CROSS    = /opt/s3_ncam_bonecrew_test/support/toolchains/native/bin/x86_64-linux-gnu-
+|  CC       = /opt/s3_ncam_bonecrew_test/support/toolchains/native/bin/x86_64-linux-gnu-gcc
+|  STRIP    = /opt/s3_ncam_bonecrew_test/support/toolchains/native/bin/x86_64-linux-gnu-strip
+|  SSL      = /usr/bin/openssl
+| Settings:
+|  CONF_DIR = /etc/tuxbox/config/ncam
+|  CC_OPTS  = -O2 -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns
+|  CC_WARN  = -W -Wall -Wshadow -Wredundant-decls -Wstrict-prototypes -Wold-style-definition
+|  CFLAGS   = -DSTATIC_LIBDVBCSA=0 -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/usr/include/PCSC -I/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LDFLAGS  = -Wl,--gc-sections -DWITH_SSL=1 -DWITH_LIBCRYPTO=1 -DWITH_LIBCURL=1 -DWITH_LIBUSB=1 -DWITH_PCSC=1 -I/usr/include/PCSC -I/usr/include/../local/include/PCSC -DWITH_UTF8=1 -DWITH_UTF8 -DWITH_LIBDVBCSA=1
+|  LIBS     = -lssl -lcrypto -lcurl -lusb-1.0 -lrt -lpcsclite -ldvbcsa -lm -lpthread -ldl -lrt
+|  UseFlags = USE_SSL=1 USE_LIBCRYPTO=1 USE_LIBCURL=1 USE_LIBUSB=1 USE_PCSC=1 USE_UTF8=1 USE_LIBDVBCSA=1
+| Config:
+|  Addons   : WEBIF WEBIF_LIVELOG WEBIF_JQUERY WITH_COMPRESS_WEBIF TOUCH WITH_SSL HAVE_DVBAPI WITH_NEUTRINO READ_SDT_CHARSETS IRDETO_GUESSING CS_ANTICASC WITH_DEBUG MODULE_MONITOR WITH_LB CS_CACHEEX CS_CACHEEX_AIO CW_CYCLE_CHECK LCDSUPPORT LEDSUPPORT CLOCKFIX WITH_SIGNING WITH_CARDLIST WITH_EMU WITH_SOFTCAM
+|  Protocols: CAMD33 CAMD35 CAMD35_TCP NEWCAMD CCCAM CCCSHARE GBOX RADEGAST SCAM SERIAL CONSTCW PANDORA GHTTP STREAMRELAY
+|  Readers  : NAGRA NAGRA_MERLIN IRDETO CONAX CRYPTOWORKS SECA VIACCESS VIDEOGUARD DRE TONGFANG STREAMGUARD JET BULCRYPT GRIFFIN DGCRYPT
+|  CardRdrs : PHOENIX INTERNAL SC8IN1 MP35 SMARGO STAPI STAPI5 STINGER DRECAS SMART PCSC
+|  Compiler : x86_64-linux-gnu-gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
+|  Signing  : OpenSSL 3.0.2 15 Mar 2022
+|             Public Key Algorithm: id-ecPublicKey, Public-Key: (256 bit), Signature Algorithm: ecdsa-with-SHA256,
+|             Valid Not After: 04.01.2026 16:04:15, Subject: CN = Private NCam CA Certificate
+|  Config   : build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/config.mak
+|  Binary   : /opt/s3_ncam_bonecrew_test/support/binaries/ncam-git_bonecrew_r1.2.1_2025_01_11865_@389a698e-Linux-x86_64-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-signed
++-------------------------------------------------------------------------------
+HOSTCC	webif/pages_gen
+GEN	webif/pages.c
+GEN	Compressed 591968 template bytes into 244824 bytes. 347144 saved bytes (58.64%).
+CC	cscrypt/i_cbc.c
+CC	cscrypt/i_ecb.c
+CC	cscrypt/i_skey.c
+CC	cscrypt/rc6.c
+CC	cscrypt/fast_aes.c
+CC	cscrypt/sha256.c
+CC	cscrypt/jet_twofish.c
+In file included from cardlist.c:2:
+globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from cscrypt/mdc2.c:1:
+cscrypt/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/protocol_t0.c:25:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/ifd_mp35.c:1:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/protocol_t1.c:1:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/ifd_pcsc.c:1:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/icc_async.c:1:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/atr.c:24:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from cscrypt/des.c:136:
+cscrypt/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from cscrypt/jet_dh.c:4:
+cscrypt/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from csctapi/io_serial.c:25:
+csctapi/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+In file included from cscrypt/md5.c:22:
+cscrypt/../globals.h:1: error: unterminated #ifndef
+    1 | #ifndef GLOBALS_H_
+      | 
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/protocol_t0.o] Fehler 1
+make[1]: *** Auf noch nicht beendete Prozesse wird gewartet …
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/cscrypt/des.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/cscrypt/jet_dh.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/cscrypt/mdc2.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/cardlist.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/atr.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/icc_async.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/protocol_t1.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/ifd_mp35.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/ifd_pcsc.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/csctapi/io_serial.o] Fehler 1
+make[1]: *** [Makefile:599: build/x86_64-linux-gnu-ssl-libcurl-libusb-pcsc-libdvbcsa/cscrypt/md5.o] Fehler 1
+make: *** [Makefile:548: all] Fehler 2
+
+ |  TIME  >	[  0 min(s) 44 secs ]
+
+ncam-git_bonecrew_r1.2.1_2025_01_11865_@389a698e-Linux-x86_64-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-signed.tar.gz
+created
+
+ncam-git_bonecrew_r1.2.1_2025_01_11865_@389a698e-Linux-x86_64-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-emu-icam-extra-signed.tar.gz
+nach
+/opt/s3_ncam_bonecrew_test/archive

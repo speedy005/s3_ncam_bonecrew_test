@@ -1,0 +1,52 @@
+Von https://github.com/speedy005/s3_ncam_bonecrew_test
+   09b38e2..a7f3239  master     -> origin/master
+Auf Branch master
+Ihr Branch ist 1 Commit hinter 'origin/master', und kann vorgespult werden.
+  (benutzen Sie "git pull", um Ihren lokalen Branch zu aktualisieren)
+
+Änderungen, die nicht zum Commit vorgemerkt sind:
+  (benutzen Sie "git add/rm <Datei>...", um die Änderungen zum Commit vorzumerken)
+  (benutzen Sie "git restore <Datei>...", um die Änderungen im Arbeitsverzeichnis zu verwerfen)
+	geändert:       support/configs/config.sh.master
+	gelöscht:       support/patches/no.patch
+	geändert:       support/toolchains.cfg/vuplus4k_armv7a
+
+Unversionierte Dateien:
+  (benutzen Sie "git add <Datei>...", um die Änderungen zum Commit vorzumerken)
+	archive
+	binaries
+	lastbuild.log
+	logs
+	ncam-git/
+	patches
+	profiles
+	software
+	support/archive/
+	support/backup_repo/
+	support/binaries/
+	support/configs/Makefile.master
+	support/configs/plugin_update_toolchain.config
+	support/downloads/
+	support/logs/
+	support/menu_save/
+	support/profiles/vuplus4k_armv7a_chris_ok.profile
+	support/toolchains.cfg/native
+	support/toolchains/
+
+keine Änderungen zum Commit vorgemerkt (benutzen Sie "git add" und/oder "git commit -a")
+
+START: s3 updates pending
+  Local revision 611: 09b38e2 Add files via upload
+ Online revision 612: a7f3239 Update s3
+
+a7f3239 Update s3
+
+STAGE 1: Try simple pull (auto-merge)...
+
+Aktualisiere 09b38e2..a7f3239
+Fast-forward
+ s3 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+UPDATE finished.
+
