@@ -36,6 +36,13 @@ _gui_build(){
 #fix streamrelay case
 	check_streamrelay
 
+#export USE_FLAGS for config.sh (needed for CARDREADER_INTERNAL_* selection)
+	_active_use_flags=""
+	for _key in "${!USE_vars[@]}"; do
+		[ -n "${USE_vars[$_key]}" ] && _active_use_flags="$_active_use_flags $_key"
+	done
+	export USE_FLAGS="$_active_use_flags"
+
 #do use_vars
 	for e2 in $USESTRING
 	do
@@ -142,10 +149,10 @@ _gui_build(){
 	EXTRA_USE=$extra_use
 	timer_start
 	$_make -j"$cpus" \
-		"CONF_DIR=$_ncamconfdir_default" "NCAM_BIN=$bdir/$ncam_name" "CC_OPTS=$co $cc_opts $extra_cc" "CC_WARN=$cc_warn" "EXTRA_LDFLAGS=$extra_ld" "EXTRA_CFLAGS=$extra_c" $EXTRA_USE $COMP_LEVEL "CROSS=$CROSS" $stapivar $USESTRING_ $LIBCRYPTO_LIB $SSL_LIB $LIBUSB_LIB $PCSC_LIB $LIBDVBCSA_LIB 2>&1 \
+		"CONF_DIR=$_ncamconfdir_default" "NCAM_BIN=$bdir/$ncam_name" "CC_OPTS=$co $cc_opts $extra_cc" "EXTRA_CC_WARN=$cc_warn" "EXTRA_LDFLAGS=$extra_ld" "EXTRA_CFLAGS=$extra_c" $EXTRA_USE $COMP_LEVEL "CROSS=$CROSS" $stapivar $USESTRING_ $LIBCRYPTO_LIB $SSL_LIB $LIBUSB_LIB $PCSC_LIB $LIBDVBCSA_LIB 2>&1 \
 		|tee "$ldir/$log_name" \
 		|grep --line-buffered -v 'BFD\|^/' \
-		|grep --line-buffered '^CC\|^HOSTCC\|^GEN\|^CONF\|^RM\|^UPX\|^SIGN\|UseFlags\|  CONF_DIR =\|Binary\|LINK\|STRIP\|BUILD\|Addons\|Protocols\|Readers\|CardRdrs\|^/' \
+		|grep --line-buffered '^CC\|^HOSTCC\|^GEN\|^CONF\|^RM\|^UPX\|^SIGN\|UseFlags\|submodule\|  CONF_DIR =\|Binary\|LINK\|STRIP\|BUILD\|Addons\|Protocols\|Readers\|CardRdrs\|^/' \
 		|sed -u "s/^|/ |/g;/^[[:space:]]*[[:digit:]]* ->/ s/./ |  UPX   > &/;s/^RM/ |  REMOVE>/g;s/^CONF/ |  CONFIG>/g;s/^LINK/ |  LINK  >/g;s/^STRIP/ |  STRIP >/g;s/^CC\|^HOSTCC\|^BUILD/ |  BUILD >/g;s/^GEN/ |  GEN   >/g;s/^UPX/ |  UPX   >/g;s/^SIGN/ |  SIGN  >/g;
 		s/WEBIF_//g;s/WITH_//g;s/MODULE_//g;s/CS_//g;s/HAVE_//g;s/_CHARSETS//g;s/CW_CYCLE_CHECK/CWCC/g;s/SUPPORT//g;s/= /: /g;"
 	timer_stop
@@ -165,7 +172,7 @@ _gui_build(){
 			printf "ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo" >"$targztmp"
 		else
 			printf "SAVE\t$lsmn $txt_as ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"|tee -a "$ldir/$log_name"
-			mv -f "$lsmn" "$bdir/ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			mv -f "$lsmn" "$bdir/bcam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
 			printf "ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo" >"$targztmp\n"
 		fi
 
