@@ -5,11 +5,11 @@ _cmd_build(){
 
 	if [ "$_toolchainname" == "native" ]
 	then
-		log_name="$(date +%F).$(date +%X).$(hostname).log"
-
+		log_name="$(date +%F).$(date +%H-%M-%S).$(hostname).log"
 	else
-		log_name="$(date +%F).$(date +%X).$_toolchainname.log"
+		log_name="$(date +%F).$(date +%H-%M-%S).$_toolchainname.log"
 	fi
+	cmd_name="${log_name%.log}.cmd"
 
 	source "$tccfgdir/$_toolchainname"
 	_reset_config
@@ -17,8 +17,10 @@ _cmd_build(){
 	ologo >"$ldir/$log_name"
 
 #set build defaults
+	declare -a build_cmds=()
 	CROSS="$tcdir/$_toolchainname/bin/$_compiler"
 	SYSROOT="$(realpath -sm $tcdir/$_toolchainname/$_sysroot)"
+	_make="make"
 	[ "$_stagingdir" == "1" ] && export STAGING_DIR="$tcdir/$_toolchainname"
 	[ "$_androidndkdir" == "1" ] && export ANDROID_NDK="$tcdir/$_toolchainname"
 	[ -f "$configdir/compiler_option" ] && co=$(cat "$configdir/compiler_option") || co="-O2"
@@ -42,10 +44,25 @@ _cmd_build(){
 			codecheck=$(command -v scan-build)
 		fi
 	done
-	cd "${repodir}"
+
+#export USE_FLAGS for config.sh (needed for CARDREADER_INTERNAL_* selection)
+	_active_use_flags=""
+	for _key in "${!USE_vars[@]}"; do
+		[ -n "${USE_vars[$_key]}" ] && _active_use_flags="$_active_use_flags $_key"
+	done
+	export USE_FLAGS="$_active_use_flags"
+
+#change directory
+	build_cmds+=($'\n#jump into oscam directory')
+	cmd=(cd "${repodir}")
+	"${cmd[@]}"
+	build_cmds+=("$(printf "%q " "${cmd[@]}")")
 
 #make clean
-	make distclean > /dev/null 2>&1;
+	build_cmds+=($'\n#cleanup previous build')
+	cmd=($_make distclean)
+	"${cmd[@]}" > /dev/null 2>&1
+	build_cmds+=("$(printf "%q " "${cmd[@]}")")
 
 #patching
 	if [ "${USE_vars['USE_PATCH']}" == "USE_PATCH=1" ]
@@ -55,41 +72,41 @@ _cmd_build(){
 			printf "$y_l\n |  $r_l WARNING : patch upon patch"
 			printf "$y_l\n |  $r_l UNCLEAN $y_l: restore SVN $G$txt_wait"
 			quickreporestore $_toolchainname
-			_apply_consolepatch
-		else
-			_apply_consolepatch
 		fi
+		_apply_consolepatch
 	fi
 
-#do enable and disable modules
-	for am in "${all_cc[@]}"
-	do
+# do enable and disable modules
+	build_cmds+=($'\n#enable/disable options')
 
-		chose="false"
-		if [ "${am:${#am} - 3}" == "_on" ]
-		then
-			e="${am:0: -3}"
-			"${repodir}/config.sh" -E "$e" |awk '{printf "\033[1;37m"} {printf " |    %s : ", $1} {printf "\033[1;32m"} {printf "%s\n", $2}'
+	for am in "${all_cc[@]}"; do
+		if [[ "${am: -3}" == "_on" ]]; then
+			e="${am:0:-3}"
+			cmd=("${repodir}/config.sh" -E "$e")
+			"${cmd[@]}" | awk '{printf "\033[1;37m |    %s : \033[1;32m%s\033[0m\n", $1, $2}'
+			build_cmds+=("$(printf "%q " "${cmd[@]}")")
 		fi
 
-		if [ "${am:${#am} - 4}" == "_off" ]
-		then
-			d="${am:0: -4}"
-			"${repodir}/config.sh" -D "$d" |awk '{printf "\033[1;37m"} {printf " |   %s : ", $1} {printf "\033[1;31m"} {printf "%s\n", $2}'
+		if [[ "${am: -4}" == "_off" ]]; then
+			d="${am:0:-4}"
+			cmd=("${repodir}/config.sh" -D "$d")
+			"${cmd[@]}" | awk '{printf "\033[1;37m |    %s : \033[1;31m%s\033[0m\n", $1, $2}'
+			build_cmds+=("$(printf "%q " "${cmd[@]}")")
 		fi
-
 	done
 	echo -en "\e[1A"
 
 #fix smargo case
-	if [ "$(./config.sh -e CARDREADER_SMARGO)" == "Y" ] || [ "${USE_vars[$e]}" == "USE_LIBUSB=1" ]
-	then
-		silent=$(./config.sh -E CARDREADER_SMARGO)
-		check_smargo
+	if [[ "$(${repodir}/config.sh -e CARDREADER_SMARGO)" == "Y" || "${USE_vars[$e]}" == "USE_LIBUSB=1" ]]; then
+		opt="-E"
 	else
-		silent=$(./config.sh -D CARDREADER_SMARGO)
-		check_smargo
+		opt="-D"
 	fi
+
+	cmd=("${repodir}/config.sh" "$opt" CARDREADER_SMARGO)
+	silent=$("${cmd[@]}")
+	build_cmds+=("$(printf "%q " "${cmd[@]}")")
+	check_smargo
 
 #fix streamrelay case
 	check_streamrelay
@@ -105,7 +122,6 @@ _cmd_build(){
 	_dvbcsa=;
 	_stapi=;
 	_stapi5=;
-	_make="make"
 	for e in "${!USE_vars[@]}"
 	do
 		for e1 in $_block
@@ -142,28 +158,28 @@ _cmd_build(){
 					s3cfg_vars[TARGZ]=1;;	# overwrite global
 			"USE_STAPI=1")
 					_stapi="-stapi"
-					[ -z "$stapi_lib_custom" ] && STAPI_LIB="STAPI_LIB=$sdir/stapi/libncam_stapi.a" || STAPI_LIB="STAPI_LIB=$sdir/stapi/${stapi_lib_custom}"
+					[ -z "$stapi_lib_custom" ] && STAPI_LIB="STAPI_LIB=$sdir/stapi/liboscam_stapi.a" || STAPI_LIB="STAPI_LIB=$sdir/stapi/${stapi_lib_custom}"
 					printf "$y_l\n |       LIB : ${c_l}$(basename "$STAPI_LIB")${w_l}";;
 			"USE_STAPI5=1")
 					_stapi5="-stapi5"
-					[ "$OPENBOX" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_OPENBOX.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_OPENBOX.a"$w_l
-					[ "$UFS916003" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_UFS916_0.03.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_UFS916_0.03.a"$w_l
-					[ "$UFS916003" == "0" ] && [ "$OPENBOX" == "0" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_UFS916.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_UFS916.a"$w_l;;
+					[ "$OPENBOX" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_OPENBOX.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_OPENBOX.a"$w_l
+					[ "$UFS916003" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_UFS916_0.03.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_UFS916_0.03.a"$w_l
+					[ "$UFS916003" == "0" ] && [ "$OPENBOX" == "0" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_UFS916.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_UFS916.a"$w_l;;
 		esac
 
 	done
 
-#change default ncam CONF_DIR
+#change default oscam CONF_DIR
 
-CONFDIR="$_ncamconfdir_default"
+CONFDIR="$_oscamconfdir_default"
 cdtag="CONF_DIR=$CONFDIR"
 
-if [ ! -z "$_ncamconfdir_custom" ];
+if [ ! -z "$_oscamconfdir_custom" ];
 then
-	if [ ! "$_ncamconfdir_custom" == "not_set" ];
+	if [ ! "$_oscamconfdir_custom" == "not_set" ];
 	then
-		CONFDIR="$_ncamconfdir_custom"
-		cdtag="${r_l}custom CONF_DIR=$_ncamconfdir_custom (via toolchain.cfg)"
+		CONFDIR="$_oscamconfdir_custom"
+		cdtag="${r_l}custom CONF_DIR=$_oscamconfdir_custom (via toolchain.cfg)"
 	fi
 fi
 
@@ -215,37 +231,41 @@ printf "$y_l\n |       set : ${cdtag}$w_l"
 	check_signing
 
 #build
-if [ ${#USE_vars[USE_NCAMNAME]} -gt 0 ]
+if [ ${#USE_vars[USE_OSCAMNAME]} -gt 0 ]
 then
-	ncam_name=$(echo ${USE_vars[USE_NCAMNAME]} |cut -d "=" -f2)
+	oscam_name=$(echo ${USE_vars[USE_OSCAMNAME]} |cut -d "=" -f2)
 else
-	_generate_ncam_name "$_toolchainname" "$extra$buildtype"
+	_generate_oscam_name "$_toolchainname" "$extra$buildtype"
 fi
 
-if [[ $ncam_name =~ -upx ]]
+if [[ $oscam_name =~ -upx ]]
 then
 	[ -f "$configdir/upx_option" ] && source "$configdir/upx_option"
 	COMP_LEVEL="COMP_LEVEL=$upx_c"
 fi
+	build_cmds+=($'\n#build oscam command')
 	_nl
 	USESTRING=${USE_vars[@]}
 	EXTRA_USE=$extra_use
 	timer_start
-	$codecheck $_make -j"$cpus" $_verbose \
+	cmd=($codecheck $_make -j"$cpus" $_verbose \
 	"CONF_DIR=$CONFDIR" \
-	"NCAM_BIN=$bdir/$ncam_name" \
+	"OSCAM_BIN=$bdir/$oscam_name" \
 	"CC_OPTS=$co $cc_opts $extra_cc" \
-	"CC_WARN=$cc_warn" \
+	"EXTRA_CC_WARN=$cc_warn" \
 	"EXTRA_LDFLAGS=$extra_ld" \
 	"EXTRA_CFLAGS=$extra_c" \
 	$EXTRA_USE \
 	$COMP_LEVEL \
-	"CROSS=$CROSS" $STAPI_LIB $USESTRING $LIBCRYPTO_LIB $SSL_LIB $LIBUSB_LIB $PCSC_LIB $LIBDVBCSA_LIB 2>&1 \
+	"CROSS=$CROSS" $STAPI_LIB $USESTRING $LIBCRYPTO_LIB $SSL_LIB $LIBUSB_LIB $PCSC_LIB $LIBDVBCSA_LIB)
+
+	"${cmd[@]}" 2>&1 \
 	|tee -a "$ldir/$log_name" \
 	|grep --line-buffered -v 'BFD\|^/' \
-	|grep --line-buffered '^CC\|^HOSTCC\|^GEN\|^CONF\|^RM\|^UPX\|^SIGN\|UseFlags\|  CONF_DIR =\|Binary\|LINK\|STRIP\|BUILD\|Addons\|Protocols\|Readers\|CardRdrs\|^/' \
-	|sed -e "s/^|/"$Y" |/g;s/^RM/"$R" REMOVE ----->$W/g;s/^CONF/"$C" CONFIG ----->$W/g;s/^LINK/"$P" LINK ------->$W/g;s/^STRIP/"$P" STRIP ------>$W/g;s/^CC\|^HOSTCC\|^BUILD/"$G" BUILD ------>$W/g;s/^GEN/"$C" GEN -------->/g;s/^UPX/"$GH" UPX -------->$W/g;s/^SIGN/"$YH" SIGN ------->$W/g;
+	|grep --line-buffered '^CC\|^HOSTCC\|^GEN\|^CONF\|^RM\|^UPX\|^SIGN\|UseFlags\|submodule\|  CONF_DIR =\|Binary\|LINK\|STRIP\|BUILD\|Addons\|Protocols\|Readers\|CardRdrs\|^/' \
+	|sed -e "s/.*[Ss]ubmodule.*/ | SUBMODULE : &/g;s/^ | SUBMODULE.*/"$C"&$W/g;s/^|/"$Y" |/g;s/^RM/"$R" REMOVE ----->$W/g;s/^CONF/"$C" CONFIG ----->$W/g;s/^LINK/"$P" LINK ------->$W/g;s/^STRIP/"$P" STRIP ------>$W/g;s/^CC\|^HOSTCC\|^BUILD/"$G" BUILD ------>$W/g;s/^GEN/"$C" GEN -------->/g;s/^UPX/"$GH" UPX -------->$W/g;s/^SIGN/"$YH" SIGN ------->$W/g;
 	s/WEBIF_//g;s/WITH_//g;s/MODULE_//g;s/CS_//g;s/HAVE_//g;s/_CHARSETS//g;s/CW_CYCLE_CHECK/CWCC/g;s/SUPPORT//g;s/= /: /g;"
+	build_cmds+=("$(printf "%q " "${cmd[@]}")")
 
 #calc buildtime
 	timer_stop
@@ -261,22 +281,22 @@ fi
 
 		if [ "$_toolchainname" == "native" ]
 		then
-			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
-			mv -f "$lsmn" "$bdir/ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
-			tartmp="ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			mv -f "$lsmn" "$bdir/oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			tartmp="oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
 		else
-			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
-			mv -f "$lsmn" "$bdir/ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
-			tartmp="ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			mv -f "$lsmn" "$bdir/oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			tartmp="oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
 		fi
 
 	fi
 
 #remove debug binary
-	if [ "${s3cfg_vars[delete_ncamdebugbinary]}" == "1" ] && [ -f "$bdir/$ncam_name.debug" ]
+	if [ "${s3cfg_vars[delete_oscamdebugbinary]}" == "1" ] && [ -f "$bdir/$oscam_name.debug" ]
 	then
-		printf "$r_l"" REMOVE ----->  $w_l$bdir/$ncam_name.debug"
-		rm "$bdir/$ncam_name.debug"
+		printf "$r_l"" REMOVE ----->  $w_l$bdir/$oscam_name.debug"
+		rm "$bdir/$oscam_name.debug"
 	fi
 
 #show build time
@@ -285,7 +305,7 @@ fi
 	if [ "${s3cfg_vars[TARGZ]}" == "1" ]
 	then
 		printf "$w_l"" ENABLE -----> TARGZ:$y_l $txt_wait\n"
-		tar_cam "$ncam_name" "$tartmp"
+		tar_cam "$oscam_name" "$tartmp"
 	fi
 
 #link lastlog
@@ -298,12 +318,52 @@ fi
 #EXTRA_COPY_DIR
 	if [ $EXTRA_COPY_DIR -eq 1 ]; then
 		cd $bdir
-		cp $ncam_name $here_
+		cp $oscam_name $here_
 	fi
 
 #build error message
-	error_on_build=$(grep -c1 error "$ldir/$log_name")
+	error_on_build=$(grep -Ec1 'error( |:)' "$ldir/$log_name")
 	[ "$error_on_build" -gt "0" ] && printf "$r_l\terrors on build found\n$w_l"
 	printf "$re_$w_l"
+
+
+#output build command list
+	if [ ! -z "${s3cfg_vars[CREATE_BUILDCMD_FILE]}" ] && [ "${s3cfg_vars[CREATE_BUILDCMD_FILE]}" -gt "0" ]; then
+		{
+			printf '%s\n' "#!/bin/bash"
+			printf '%s\n' "# ==================================================================="
+			printf '%s\n' "# This file was auto-generated by simplebuild3 during the build."
+			printf '%s\n' "#"
+			printf '%s\n' "# It contains the full command sequence used for the last build"
+			printf '%s\n' "# of oscam and can be executed to reproduce the build outside of"
+			printf '%s\n' "# simplebuild3, except patching the source files."
+			printf '%s\n' "#"
+			printf '%s\n' "# The file is marked executable so it can be run directly as a script."
+			printf '%s\n' "#"
+			printf '%s\n' "# Execution is at your own risk. No warranty is provided and the"
+			printf '%s\n' "# authors assume no liability for any consequences of running it."
+			printf '%s\n' "# ==================================================================="
+			printf '\n'
+			printf '%s\n' "#jump back where this script was started from on exit"
+			printf '%s\n' 'START_DIR="$(pwd)"'
+			printf '%s\n' 'trap '\''cd "$START_DIR"'\'' EXIT'
+			printf '\n'
+			printf '%s\n' 'printf "===================================================================\n"'
+			printf '%s\n' 'printf " DISCLAIMER: This script was auto-generated by simplebuild3.\n"'
+			printf '%s\n' 'printf " Execution is at your own risk. No warranty is provided and the\n"'
+			printf '%s\n' 'printf " authors assume no liability for any consequences of running it.\n"'
+			printf '%s\n' 'printf "===================================================================\n\n"'
+			printf '%s\n' 'read -n1 -r -p "Press any key to continue..." _'
+			printf '%s\n' 'printf "\n\n"'
+			#dump the collected commands, one per line
+			for bc in "${build_cmds[@]}"; do
+				printf '%s\n' "$bc"
+			done
+		} > "$ldir/$cmd_name"
+		chmod +x "$ldir/$cmd_name"
+		ln -frs "$ldir/$cmd_name" "$workdir/lastbuild.cmd"
+	else
+		rm -f "$workdir/lastbuild.cmd"
+	fi
 	exit
 }
