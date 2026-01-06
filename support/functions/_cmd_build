@@ -53,7 +53,7 @@ _cmd_build(){
 	export USE_FLAGS="$_active_use_flags"
 
 #change directory
-	build_cmds+=($'\n#jump into oscam directory')
+	build_cmds+=($'\n#jump into ncam directory')
 	cmd=(cd "${repodir}")
 	"${cmd[@]}"
 	build_cmds+=("$(printf "%q " "${cmd[@]}")")
@@ -158,28 +158,28 @@ _cmd_build(){
 					s3cfg_vars[TARGZ]=1;;	# overwrite global
 			"USE_STAPI=1")
 					_stapi="-stapi"
-					[ -z "$stapi_lib_custom" ] && STAPI_LIB="STAPI_LIB=$sdir/stapi/liboscam_stapi.a" || STAPI_LIB="STAPI_LIB=$sdir/stapi/${stapi_lib_custom}"
+					[ -z "$stapi_lib_custom" ] && STAPI_LIB="STAPI_LIB=$sdir/stapi/libncam_stapi.a" || STAPI_LIB="STAPI_LIB=$sdir/stapi/${stapi_lib_custom}"
 					printf "$y_l\n |       LIB : ${c_l}$(basename "$STAPI_LIB")${w_l}";;
 			"USE_STAPI5=1")
 					_stapi5="-stapi5"
-					[ "$OPENBOX" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_OPENBOX.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_OPENBOX.a"$w_l
-					[ "$UFS916003" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_UFS916_0.03.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_UFS916_0.03.a"$w_l
-					[ "$UFS916003" == "0" ] && [ "$OPENBOX" == "0" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/liboscam_stapi5_UFS916.a" && printf "$y_l\n |       LIB : "$c_l"liboscam_stapi5_UFS916.a"$w_l;;
+					[ "$OPENBOX" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_OPENBOX.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_OPENBOX.a"$w_l
+					[ "$UFS916003" == "1" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_UFS916_0.03.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_UFS916_0.03.a"$w_l
+					[ "$UFS916003" == "0" ] && [ "$OPENBOX" == "0" ] && STAPI_LIB="STAPI5_LIB=$sdir/stapi/libncam_stapi5_UFS916.a" && printf "$y_l\n |       LIB : "$c_l"libncam_stapi5_UFS916.a"$w_l;;
 		esac
 
 	done
 
-#change default oscam CONF_DIR
+#change default ncam CONF_DIR
 
-CONFDIR="$_oscamconfdir_default"
+CONFDIR="$_ncamconfdir_default"
 cdtag="CONF_DIR=$CONFDIR"
 
-if [ ! -z "$_oscamconfdir_custom" ];
+if [ ! -z "$_ncamconfdir_custom" ];
 then
-	if [ ! "$_oscamconfdir_custom" == "not_set" ];
+	if [ ! "$_ncamconfdir_custom" == "not_set" ];
 	then
-		CONFDIR="$_oscamconfdir_custom"
-		cdtag="${r_l}custom CONF_DIR=$_oscamconfdir_custom (via toolchain.cfg)"
+		CONFDIR="$_ncamconfdir_custom"
+		cdtag="${r_l}custom CONF_DIR=$_ncamconfdir_custom (via toolchain.cfg)"
 	fi
 fi
 
@@ -231,26 +231,26 @@ printf "$y_l\n |       set : ${cdtag}$w_l"
 	check_signing
 
 #build
-if [ ${#USE_vars[USE_OSCAMNAME]} -gt 0 ]
+if [ ${#USE_vars[USE_NCAMNAME]} -gt 0 ]
 then
-	oscam_name=$(echo ${USE_vars[USE_OSCAMNAME]} |cut -d "=" -f2)
+	ncam_name=$(echo ${USE_vars[USE_NCAMNAME]} |cut -d "=" -f2)
 else
-	_generate_oscam_name "$_toolchainname" "$extra$buildtype"
+	_generate_ncam_name "$_toolchainname" "$extra$buildtype"
 fi
 
-if [[ $oscam_name =~ -upx ]]
+if [[ $ncam_name =~ -upx ]]
 then
 	[ -f "$configdir/upx_option" ] && source "$configdir/upx_option"
 	COMP_LEVEL="COMP_LEVEL=$upx_c"
 fi
-	build_cmds+=($'\n#build oscam command')
+	build_cmds+=($'\n#build ncam command')
 	_nl
 	USESTRING=${USE_vars[@]}
 	EXTRA_USE=$extra_use
 	timer_start
 	cmd=($codecheck $_make -j"$cpus" $_verbose \
 	"CONF_DIR=$CONFDIR" \
-	"OSCAM_BIN=$bdir/$oscam_name" \
+	"NCAM_BIN=$bdir/$ncam_name" \
 	"CC_OPTS=$co $cc_opts $extra_cc" \
 	"EXTRA_CC_WARN=$cc_warn" \
 	"EXTRA_LDFLAGS=$extra_ld" \
@@ -281,22 +281,22 @@ fi
 
 		if [ "$_toolchainname" == "native" ]
 		then
-			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
-			mv -f "$lsmn" "$bdir/oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
-			tartmp="oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			mv -f "$lsmn" "$bdir/ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
+			tartmp="ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$(hostname)-list_smargo"
 		else
-			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
-			mv -f "$lsmn" "$bdir/oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
-			tartmp="oscam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			printf "$g_n"" SAVE -------> $w_l$lsmn$g_l $txt_as$y_l ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			mv -f "$lsmn" "$bdir/ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
+			tartmp="ncam-${REPO}$(REVISION)$($(USEGIT) && printf "@$(COMMIT)" || printf "")-$_toolchainname-list_smargo"
 		fi
 
 	fi
 
 #remove debug binary
-	if [ "${s3cfg_vars[delete_oscamdebugbinary]}" == "1" ] && [ -f "$bdir/$oscam_name.debug" ]
+	if [ "${s3cfg_vars[delete_ncamdebugbinary]}" == "1" ] && [ -f "$bdir/$ncam_name.debug" ]
 	then
-		printf "$r_l"" REMOVE ----->  $w_l$bdir/$oscam_name.debug"
-		rm "$bdir/$oscam_name.debug"
+		printf "$r_l"" REMOVE ----->  $w_l$bdir/$ncam_name.debug"
+		rm "$bdir/$ncam_name.debug"
 	fi
 
 #show build time
@@ -305,7 +305,7 @@ fi
 	if [ "${s3cfg_vars[TARGZ]}" == "1" ]
 	then
 		printf "$w_l"" ENABLE -----> TARGZ:$y_l $txt_wait\n"
-		tar_cam "$oscam_name" "$tartmp"
+		tar_cam "$ncam_name" "$tartmp"
 	fi
 
 #link lastlog
@@ -318,7 +318,7 @@ fi
 #EXTRA_COPY_DIR
 	if [ $EXTRA_COPY_DIR -eq 1 ]; then
 		cd $bdir
-		cp $oscam_name $here_
+		cp $ncam_name $here_
 	fi
 
 #build error message
@@ -335,7 +335,7 @@ fi
 			printf '%s\n' "# This file was auto-generated by simplebuild3 during the build."
 			printf '%s\n' "#"
 			printf '%s\n' "# It contains the full command sequence used for the last build"
-			printf '%s\n' "# of oscam and can be executed to reproduce the build outside of"
+			printf '%s\n' "# of ncam and can be executed to reproduce the build outside of"
 			printf '%s\n' "# simplebuild3, except patching the source files."
 			printf '%s\n' "#"
 			printf '%s\n' "# The file is marked executable so it can be run directly as a script."
