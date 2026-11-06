@@ -1,7 +1,7 @@
 _toolchainname="native";
 default_use="USE_LIBCRYPTO";
-_ncamconfdir_default="/usr/local/etc";
-_ncamconfdir_custom="/etc/tuxbox/config/ncam"
+_oscamconfdir_default="/usr/local/etc";
+_oscamconfdir_custom="not_set";
 _compiler="x86_64-linux-gnu-";
 _tc_info="Native System Compiler gcc (Ubuntu 11.4.0-1ubuntu1~22.04) 11.4.0
 Copyright (C) 2021 Free Software Foundation, Inc.
