@@ -4,7 +4,7 @@ _toolchain_build_menu(){
 	[ "$loadprofile" == "yes" ] && load_config
 
 	selected=$(
-	"$gui" "$st_" "$bt_" "$title_" --no-cancel --title " -[ $txt_bmenu_title$(REPOIDENT) ]- " --menu "_________________________________________________________ \n $txt_bmenu_user = $(whoami)\n Toolchain       = $_toolchainname\n $txt_bmenu_comp = $_compiler""gcc\n $txt_bmenu_debu = CPU-Threads($(CPUS)) ${REPO^^}($($(USEGIT) && printf "$(COMMIT)" || printf "$(REVISION)")) SCRIPT(${SIMPLEVERSION}.${VERSIONCOUNTER})\n $txt_bmenu_use  = $(echo $USESTRING| sed -e 's/^[ \t]*//')\n _________________________________________________________ \n" 22 75 10 BUILD "$txt_bmenu_build" CONFIGURE "$txt_bmenu_config" UPDATE "$txt_bmenu_update" BACKUP "$txt_bmenu_backup" LOAD_PROFILE "$txt_bmenu_profile" SAVE_PROFILE "$txt_bmenus_profile" SHOW_BUILDLOG "$txt_bmenu_log" EDIT_CONF_DIR "Oscam config PATH" BACK "$txt_bmenu_back" EXIT "$txt_firstmenu_exit")
+	"$gui" "$st_" "$bt_" "$title_" --no-cancel --title " -[ $txt_bmenu_title$(REPOIDENT) ]- " --menu "_________________________________________________________ \n $txt_bmenu_user = $(whoami)\n Toolchain       = $_toolchainname\n $txt_bmenu_comp = $_compiler""gcc\n $txt_bmenu_debu = CPU-Threads($(CPUS)) ${REPO^^}($($(USEGIT) && printf "$(COMMIT)" || printf "$(REVISION)")) SCRIPT(${SIMPLEVERSION}.${VERSIONCOUNTER})\n $txt_bmenu_use  = $(echo $USESTRING| sed -e 's/^[ \t]*//')\n _________________________________________________________ \n" 22 75 10 BUILD "$txt_bmenu_build" CONFIGURE "$txt_bmenu_config" UPDATE "$txt_bmenu_update" BACKUP "$txt_bmenu_backup" LOAD_PROFILE "$txt_bmenu_profile" SAVE_PROFILE "$txt_bmenus_profile" SHOW_BUILDLOG "$txt_bmenu_log" EDIT_CONF_DIR "Ncam config PATH" BACK "$txt_bmenu_back" EXIT "$txt_firstmenu_exit")
 	[ $? = 255 ] && _toolchain_build_menu
 
 	case $selected in
@@ -46,18 +46,18 @@ _toolchain_config_menu(){
 	[ "$loadprofile" == "yes" ] && load_config
 
 	selected=$(
-	"$gui" "$st_" "$bt_" "$title_" --no-cancel --title " -[ $txt_config_menu$(REPOIDENT) ]- " --menu " ADDONS :\n $(e_addons)\n\n PROTOCOLS :\n $(e_protocols)\n\n READERS :\n $(e_readers)\n\n CARD_READERS :\n $(e_card_readers)\n\n USE VARIABLES :\n $(echo $USESTRING| sed -e 's/^[ \t]*//')\n\n" 29 75 6 BACK "$txt_back_build" OSCAM_MODULE "$txt_module_configure" OSCAM_EXTRA "$txt_oscam_extra" BUILD_EXTRA "$txt_build_extra" SELECT_STAPI "$txt_stapi" RESET "$txt_build_reset")
+	"$gui" "$st_" "$bt_" "$title_" --no-cancel --title " -[ $txt_config_menu$(REPOIDENT) ]- " --menu " ADDONS :\n $(e_addons)\n\n PROTOCOLS :\n $(e_protocols)\n\n READERS :\n $(e_readers)\n\n CARD_READERS :\n $(e_card_readers)\n\n USE VARIABLES :\n $(echo $USESTRING| sed -e 's/^[ \t]*//')\n\n" 29 75 6 BACK "$txt_back_build" NCAM_MODULE "$txt_module_configure" NCAM_EXTRA "$txt_ncam_extra" BUILD_EXTRA "$txt_build_extra" SELECT_STAPI "$txt_stapi" RESET "$txt_build_reset")
 	[ $? = 255 ] && _toolchain_config_menu
 
 	case $selected in
 		BACK | '')
 						save_config
 						_toolchain_build_menu;;
-		OSCAM_EXTRA)
-						_oscam_extra_menu;;
+		NCAM_EXTRA)
+						_ncam_extra_menu;;
 		BUILD_EXTRA)
 						_build_extra_menu;;
-		OSCAM_MODULE)
+		NCAM_MODULE)
 						eval "${repodir}/config.sh -g" 2>/dev/null
 						save_config;;
 		SELECT_STAPI)
